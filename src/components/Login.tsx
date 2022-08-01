@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, SafeAreaView, StatusBar, Image, TouchableOpacity } from "react-native";
+import { InfoModal } from "./InfoModal";
 
 const isEmpty = (text: string) => {
    return text.length === 0;
@@ -8,19 +9,24 @@ const isEmpty = (text: string) => {
 export const Login: React.FC = () => {
    const [username, setUsername] = useState('');
    const [password, setPassword] = useState('');
+   const [isErrorModalDisplayed, setIsErrorModalDisplayed] = useState(false);
+   const [isSuccessModalDisplayed, setIsSuccessModalDisplayed] = useState(false);
 
    const loginUser = () => {
       if (isEmpty(username)) {
          console.log('Username is empty!');
+         setIsErrorModalDisplayed(true);
          return;
       }
 
       if (isEmpty(password)) {
          console.log('Password is empty!');
+         setIsErrorModalDisplayed(true);
          return;
       }
 
       console.log("succesfuly login")
+      setIsSuccessModalDisplayed(true);
    }
 
    return (
@@ -31,15 +37,23 @@ export const Login: React.FC = () => {
             <Image source={{ uri: 'https://picsum.photos/id/24/350' }} style={styles.image} />
 
             <Text style={styles.title}>Username</Text>
-            <TextInput value={username} onChangeText={setUsername} style={styles.input} />
+            <TextInput value={username} onChangeText={setUsername} style={[styles.input]} />
 
             <Text style={styles.title}>Password</Text>
-            <TextInput value={password} onChangeText={setPassword} style={styles.input} secureTextEntry />
+            <TextInput value={password} onChangeText={setPassword} style={[styles.input]} secureTextEntry />
 
             <TouchableOpacity style={styles.buttonContainer} onPress={loginUser}>
                <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
          </View>
+
+         {isSuccessModalDisplayed && (
+            <InfoModal text="Successfuly loged in!" isSuccess onClose={() => setIsSuccessModalDisplayed(false)} />
+         )}
+
+         {isErrorModalDisplayed && (
+            <InfoModal text="Error while logging in!" isSuccess={false} onClose={() => setIsErrorModalDisplayed(false)} />
+         )}
       </SafeAreaView>
    );
 };
@@ -72,6 +86,11 @@ const styles = StyleSheet.create({
       backgroundColor: "#fff",
       borderRadius,
       borderWidth: 1,
+      borderColor: '#000',
+
+   },
+   focus: {
+      borderColor: '#00f',
    },
    title: {
       fontSize: 24,
