@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, SafeAreaView, StatusBar, Image, TouchableOpacity } from "react-native";
 import { InfoModal } from "./InfoModal";
+import { Color } from "../styles/Colors";
 
 const isEmpty = (text: string) => {
    return text.length === 0;
@@ -63,7 +64,7 @@ const borderRadius = 4;
 const styles = StyleSheet.create({
    mainContainer: {
       flex: 1,
-      backgroundColor: '#e89189',
+      backgroundColor: Color.SALMON,
    },
    container: {
       flex: 1,
@@ -83,10 +84,10 @@ const styles = StyleSheet.create({
       height: 35,
       paddingHorizontal: 8,
       marginTop: 18,
-      backgroundColor: "#fff",
+      backgroundColor: Color.WHITE,
       borderRadius,
       borderWidth: 1,
-      borderColor: '#000',
+      borderColor: Color.BLACK,
 
    },
    focus: {
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
    buttonContainer: {
       width: 100,
       height: 50,
-      backgroundColor: '#faa8a0',
+      backgroundColor: Color.SALMON_LIGHT,
       marginTop: 24,
       alignItems: 'center',
       justifyContent: 'center',
