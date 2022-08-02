@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, SafeAreaView, StatusBar } from "react-native";
 import { Color } from "../../styles/Colors";
+import { BooksList } from "./BooksList";
 
 export const HomePage: React.FC = () => {
 
@@ -13,9 +14,7 @@ export const HomePage: React.FC = () => {
                 <Text style={styles.title}>My books</Text>
             </View>
 
-            <View style={styles.container}>
-            </View>
-
+            <BooksList />
         </SafeAreaView>
     );
 };
