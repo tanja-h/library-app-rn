@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, SafeAreaView, StatusBar, Image, TouchableOpacity } from "react-native";
 import { InfoModal } from "./InfoModal";
 import { Color } from "../styles/Colors";
+import { borderRadius } from "../styles/constants";
 
 const isEmpty = (text: string) => {
    return text.length === 0;
@@ -58,8 +59,6 @@ export const Login: React.FC = () => {
       </SafeAreaView>
    );
 };
-
-const borderRadius = 4;
 
 const styles = StyleSheet.create({
    mainContainer: {

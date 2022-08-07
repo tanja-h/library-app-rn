@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Modal from "react-native-modal";
 import SuccessIcon from "../assets/success.svg";
 import ErrorIcon from "../assets/error.svg";
+import { borderRadius } from "../styles/constants";
 
 interface Props {
     text: string;
@@ -27,7 +28,6 @@ export const InfoModal = ({ text, isSuccess, onClose }: Props) => {
 };
 
 
-const borderRadius = 4;
 const styles = StyleSheet.create({
     modal: {
         alignSelf: 'center'

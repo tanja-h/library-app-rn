@@ -1,15 +1,20 @@
 import React from "react"
-import { HomePage } from "./components/home/HomePage"
+import { LendBorrowPage } from "./components/lendBorrow/LendBorrowPage"
+import { MyBooks } from "./components/myBooks/MyBooksPage"
 // import { View, Text } from "react-native"
 // import { Login } from "./components/Login"
+// import { NavigationContainer } from '@react-navigation/native';
 
 export const Routes: React.FC = () => {
 
     return (
         <>
-            {/* <Text>Route</Text> */}
-            {/* <Login /> */}
-            <HomePage />
+            {/* <NavigationContainer> */}
+            {/* // <Text>Route</Text> */}
+            {/* // <Login /> */}
+            {/* <MyBooks /> */}
+            <LendBorrowPage />
+            {/* </NavigationContainer> */}
         </>
     )
 }
