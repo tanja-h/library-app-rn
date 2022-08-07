@@ -1,10 +1,14 @@
 import React from "react";
 import { StyleSheet, FlatList } from "react-native";
-import { books } from "../../database/fakeData";
+import { Book, allBooks } from "../../database/fakeData";
 import { borderRadius } from "../../styles/constants";
-import { BookItem } from "./Book";
+import { MyBookItem } from "./MyBookItem";
 
-export const BooksList: React.FC = () => {
+interface Props {
+    books: Book[];
+}
+
+export const MyBooksGrid = ({ books }: Props) => {
 
 
     return (
@@ -14,7 +18,7 @@ export const BooksList: React.FC = () => {
             showsVerticalScrollIndicator={false}
             style={styles.container}
             renderItem={({ item: book }) => (
-                <BookItem book={book} />
+                <MyBookItem book={book} />
             )}
         />
     );

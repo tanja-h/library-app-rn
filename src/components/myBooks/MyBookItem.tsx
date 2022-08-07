@@ -8,7 +8,7 @@ interface Props {
     book: Book
 }
 
-export const BookItem = ({ book }: Props) => {
+export const MyBookItem = ({ book }: Props) => {
     return (
         <View style={styles.container}>
             <Image source={{ uri: book.coverImage }} style={styles.image} />

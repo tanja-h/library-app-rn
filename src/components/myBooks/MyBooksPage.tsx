@@ -1,10 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Text, SafeAreaView, StatusBar } from "react-native";
+import { allBooks } from "../../database/fakeData";
 import { Color } from "../../styles/Colors";
-import { BooksList } from "./BooksList";
+import { MyBooksGrid } from "./MyBooksGrid";
 
-export const HomePage: React.FC = () => {
-
+export const MyBooks: React.FC = () => {
+    const books = allBooks.filter(book => book.lent === undefined && book.borrowed === undefined);
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -14,7 +15,7 @@ export const HomePage: React.FC = () => {
                 <Text style={styles.title}>My books</Text>
             </View>
 
-            <BooksList />
+            <MyBooksGrid books={books} />
         </SafeAreaView>
     );
 };
