@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, FlatList } from "react-native";
 import { Book } from "../../utils/typeUtils";
-import { borderRadius } from "../../styles/constants";
+import { bookMargin, horizontalPadding } from "../../styles/constants";
 import { MyBookItem } from "./MyBookItem";
 
 interface Props {
@@ -17,6 +17,7 @@ export const MyBooksGrid = ({ books }: Props) => {
             numColumns={2}
             showsVerticalScrollIndicator={false}
             style={styles.container}
+            contentContainerStyle={styles.contentContainer}
             renderItem={({ item: book }) => (
                 <MyBookItem book={book} />
             )}
@@ -27,8 +28,10 @@ export const MyBooksGrid = ({ books }: Props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: 20,
-        borderRadius,
-        marginTop: 16,
+        paddingLeft: horizontalPadding,
+        paddingRight: horizontalPadding - bookMargin,
     },
+    contentContainer: {
+        paddingBottom: 16
+    }
 });

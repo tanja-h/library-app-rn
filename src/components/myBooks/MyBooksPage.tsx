@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, SafeAreaView, StatusBar } from "react-native";
+import { StyleSheet, SafeAreaView, StatusBar } from "react-native";
 import { allBooks } from "../../database/fakeData";
 import { MyBooksGrid } from "./MyBooksGrid";
 
@@ -18,10 +18,6 @@ export const MyBooks: React.FC = () => {
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
-    },
-    container: {
-        flex: 1,
-        paddingHorizontal: 20,
     },
     title: {
         fontSize: 24,

@@ -7,6 +7,7 @@ import { LendBorrowPage } from "./components/lendBorrow/LendBorrowPage"
 import { Login } from "./components/Login"
 import { MyBooks } from "./components/myBooks/MyBooksPage";
 import { Color } from "./styles/Colors";
+import { SearchPage } from "./components/search/SearchPage";
 
 export const Routes: React.FC = () => {
     const Tab = createBottomTabNavigator();
@@ -31,6 +32,11 @@ export const Routes: React.FC = () => {
             <Tab.Screen
                 name="Lend/Borrow"
                 component={LendBorrowPage}
+                options={screenOptions}
+            />
+            <Tab.Screen
+                name="Search"
+                component={SearchPage}
                 options={screenOptions}
             />
         </Tab.Navigator>

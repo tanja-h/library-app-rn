@@ -6,6 +6,7 @@ export type RootStackParamList = {
     [RouteName.MY_BOOKS]: undefined;
     [RouteName.LEND_BORROW]: undefined;
     [RouteName.HOME]: { screen: RouteName };
+    [RouteName.SEARCH]: undefined;
 };
 
 export type NavigationProps<T extends keyof RootStackParamList = any> = StackScreenProps<RootStackParamList, T>;

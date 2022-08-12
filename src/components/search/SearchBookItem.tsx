@@ -1,34 +1,37 @@
 import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { Book } from "../../utils/typeUtils";
 import { Color } from "../../styles/Colors";
 import { bookMargin, borderRadius } from "../../styles/constants";
 
 interface Props {
     book: Book;
+    width: number;
 }
 
-export const MyBookItem = ({ book }: Props) => {
+export const SearchBookItem = ({ book, width }: Props) => {
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={[styles.container, { width }]}>
             <Image source={{ uri: book.coverImage }} style={styles.image} />
-            <Text style={styles.title}>{book.title}</Text>
-            <Text style={styles.genre}>{book.genre}</Text>
-            <Text style={styles.genre}>{book.pagesCount} pages</Text>
-        </View>
+            <View style={styles.info}>
+                <Text style={styles.title}>{book.title}</Text>
+                <Text style={styles.author}>{book.author}</Text>
+            </View>
+        </TouchableOpacity>
     );
 };
 
-const imageSize = 130;
+const imageSize = 100;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        height: 240,
         padding: 12,
         borderRadius,
         borderWidth: 1,
         backgroundColor: Color.WHITE,
-        marginTop: bookMargin,
+        marginTop: 8,
         marginRight: bookMargin,
     },
     image: {
@@ -36,17 +39,19 @@ const styles = StyleSheet.create({
         height: imageSize,
         alignSelf: 'center',
         borderRadius: 2,
+        borderWidth: 1,
+    },
+    info: {
+        flex: 1
     },
     title: {
         fontSize: 16,
         fontWeight: '600',
         marginTop: 16,
         letterSpacing: 1,
-        flexGrow: 1,
+        flexGrow: 1
     },
-    genre: {
+    author: {
         fontSize: 12,
-        fontWeight: '600',
-        marginTop: 8,
     },
 });

@@ -1,13 +1,14 @@
 export type Setter<T> = React.Dispatch<React.SetStateAction<T>>
 
 export enum Genre {
-    DRAMA = 'DRAMA',
-    ROMANCE = 'ROMANCE',
-    FANTASY = 'FANTASY',
-    THRILLER = 'THRILLER',
-    HISTORICAL = 'HISTORICAL',
+    DRAMA = 'Drama',
+    ROMANCE = 'Romance',
+    FANTASY = 'Fantasy',
+    THRILLER = 'Thriler',
+    HISTORICAL = 'Historical',
 }
 export interface Book {
+    id: string,
     title: string,
     author: string,
     genre: Genre,
