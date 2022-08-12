@@ -1,59 +1,70 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { Book } from "../../database/fakeData";
-import { Color } from "../../styles/Colors";
 
 interface Props {
-    book: Book
+    book: Book;
 }
 
 export const LendBorrowBookItem = ({ book }: Props) => {
 
     return (
         <View style={styles.container}>
-            <Image source={{ uri: book.coverImage }} style={styles.image} />
-            <View style={styles.details}>
-                <Text style={styles.title}>{book.title}</Text>
-                <Text style={styles.title}>{book.author}</Text>
+            <View style={styles.imageContainer}>
+                <Image source={{ uri: book.coverImage }} style={styles.image} />
             </View>
+
             <View style={styles.details}>
-                <Text style={styles.title}>{book.title}</Text>
-                <Text style={styles.title}>{book.author}</Text>
+                <Text style={[styles.text, styles.title]}>{book.title}</Text>
+                <Text style={[styles.text, styles.title]}>{book.author}</Text>
+                <Text style={styles.text}>{book.pagesCount} pages</Text>
             </View>
-            <Text style={styles.genre}>{book.pagesCount} pages</Text>
+
+            <View style={styles.userContainer}>
+                <Text style={styles.text}>{book.exchange?.user}</Text>
+                <Text style={styles.text}>start: {book.exchange?.startDate.toLocaleDateString()}</Text>
+                <Text style={styles.text}>due: {book.exchange?.dueDate.toLocaleDateString()}</Text>
+            </View>
         </View>
     );
 };
 
-const imageSize = 130;
-
 const styles = StyleSheet.create({
     container: {
-        padding: 16,
+        paddingHorizontal: 16,
         width: '100%',
-        height: 200,
+        height: 180,
         borderBottomWidth: StyleSheet.hairlineWidth,
-        // backgroundColor: Color.SALMON_LIGHT,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        flex: 1,
+    },
+    imageContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     image: {
-        width: imageSize,
-        height: imageSize,
-        alignSelf: 'center',
-        borderRadius: 2,
+        width: 110,
+        height: 140,
     },
     details: {
-        flex: 1
+        flex: 1,
+        paddingHorizontal: 16,
+        justifyContent: 'space-evenly',
     },
     title: {
-        fontSize: 16,
-        fontWeight: '600',
-        marginTop: 16,
+        fontWeight: '700',
+    },
+    text: {
+        fontSize: 14,
+        fontWeight: '500',
         letterSpacing: 1,
     },
-    genre: {
+    userContainer: {
+        flex: 1,
+        justifyContent: 'space-evenly',
+    },
+    user: {
         fontSize: 12,
-        fontWeight: '600',
-        marginTop: 8,
     },
 });

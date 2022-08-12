@@ -1,76 +1,67 @@
-import { Genre } from "../utils/typeUtils";
+import { Book, ExchangeType, Genre } from "../utils/typeUtils";
 
-export interface Book {
-    title: string,
-    author: string,
-    genre: Genre,
-    coverImage: string,
-    pagesCount: number,
-    lent?: BookLent,
-    borrowed?: BookBorrowed,
-}
-const lentBooks = [
+const lentBooks: Book[] = [
     {
         title: "Harry Potter and new part",
-        author: "J.K.Rowling",
+        author: "Cupcake Honey J.K.Rowling",
         genre: Genre.HISTORICAL,
         coverImage: 'https://picsum.photos/id/874/350',
         pagesCount: 400,
-        lent: {
-            to: 'Petar', startDate: new Date(), dueDate: new Date(2, 2, 2023)
+        exchange: {
+            user: 'Petar', startDate: new Date(), dueDate: new Date(2, 2, 2023), type: ExchangeType.LENT
         }
     },
     {
-        title: "222222 Harry Potter and new part",
+        title: "Gummy bear candy cupcake Potter",
         author: "J.K.Rowling",
         genre: Genre.FANTASY,
         coverImage: 'https://picsum.photos/id/872/350',
-        pagesCount: 400,
-        lent: {
-            to: 'Boris', startDate: new Date(), dueDate: new Date(4, 4, 2023)
+        pagesCount: 300,
+        exchange: {
+            user: 'Boris', startDate: new Date(), dueDate: new Date(4, 4, 2023), type: ExchangeType.LENT
         }
     },
     {
-        title: "121423432 new part",
-        author: "J.K.Rowling daefesad",
+        title: "Milk oat ice cream sugar",
+        author: "J.K.Rowling cake",
         genre: Genre.FANTASY,
         coverImage: 'https://picsum.photos/id/372/350',
-        pagesCount: 400,
-        lent: {
-            to: 'Boris', startDate: new Date(), dueDate: new Date(4, 4, 2023)
+        pagesCount: 180,
+        exchange: {
+            user: 'Luka', startDate: new Date(), dueDate: new Date(4, 4, 2023), type: ExchangeType.LENT
         }
     },
     {
-        title: "kjfhcbksjdnlasj part",
+        title: "Honey cake chocolate part",
         author: "J.K daefesad",
         genre: Genre.DRAMA,
         coverImage: 'https://picsum.photos/id/322/350',
         pagesCount: 200,
-        lent: {
-            to: 'Ana', startDate: new Date(), dueDate: new Date(4, 4, 2023)
+        exchange: {
+            user: 'Jelena', startDate: new Date(), dueDate: new Date(4, 4, 2023), type: ExchangeType.LENT
         }
     },
     {
-        title: "asdfghjkl qwerty",
-        author: "daefesad",
+        title: "Lorem qwerty dolor sit",
+        author: "Cupcake Ipsum ",
         genre: Genre.ROMANCE,
-        coverImage: 'https://picsum.photos/id/322/350',
-        pagesCount: 200,
-        lent: {
-            to: 'Ana', startDate: new Date(), dueDate: new Date(4, 4, 2023)
+        coverImage: 'https://picsum.photos/id/102/350',
+        pagesCount: 450,
+        exchange: {
+            user: 'Jovana', startDate: new Date(), dueDate: new Date(4, 4, 2023), type: ExchangeType.LENT
         }
     },
 ]
 
-const borrowedBooks = [
+const borrowedBooks: Book[] = [
     {
         title: "Harry Potter and the Big party",
         author: "J.K.Rowling",
         genre: Genre.FANTASY,
         coverImage: 'https://picsum.photos/id/441/350',
         pagesCount: 400,
-        borrowed: {
-            from: 'Ana', startDate: new Date(), dueDate: new Date(1, 1, 2023)
+        exchange: {
+            user: 'Ana', startDate: new Date(), dueDate: new Date(1, 1, 2023), type: ExchangeType.BORROWED
         }
     },
     {
@@ -79,8 +70,8 @@ const borrowedBooks = [
         genre: Genre.FANTASY,
         coverImage: 'https://picsum.photos/id/234/350',
         pagesCount: 400,
-        borrowed: {
-            from: 'Ivana', startDate: new Date(), dueDate: new Date(3, 3, 2023)
+        exchange: {
+            user: 'Ivana', startDate: new Date(), dueDate: new Date(3, 3, 2023), type: ExchangeType.BORROWED
         }
     },
 ]
@@ -98,15 +89,3 @@ export const allBooks: Book[] = [
     ...lentBooks,
     ...borrowedBooks
 ];
-
-export interface BookBorrowed {
-    from: string;
-    startDate: Date;
-    dueDate: Date;
-}
-
-export interface BookLent {
-    to: string;
-    startDate: Date;
-    dueDate: Date;
-}

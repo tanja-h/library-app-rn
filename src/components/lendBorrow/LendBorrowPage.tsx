@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, SafeAreaView, StatusBar } from "react-native";
 import { allBooks } from "../../database/fakeData";
+import { ExchangeType } from "../../utils/typeUtils";
 import { LendBorrowCategory } from "./LendBorrowCategory";
 
 export const LendBorrowPage: React.FC = () => {
-    const lent = allBooks.filter(book => book.lent !== undefined);
-    const borrowed = allBooks.filter(book => book.borrowed !== undefined);
+    const lent = allBooks.filter(book => book.exchange && book.exchange.type === ExchangeType.LENT);
+    const borrowed = allBooks.filter(book => book.exchange && book.exchange.type === ExchangeType.BORROWED);
 
     const [isLentExpanded, setIsLentExpanded] = useState(false);
     const [isBorrowExpanded, setIsBorrowExpanded] = useState(true);
