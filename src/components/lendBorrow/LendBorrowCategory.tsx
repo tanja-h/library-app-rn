@@ -3,38 +3,52 @@ import { StyleSheet, View, Text } from "react-native";
 import { Book } from "../../database/fakeData";
 import { Color } from "../../styles/Colors";
 import { LendBorrowBooksList } from "./LendBorrowBooksList";
+import { List } from 'react-native-paper';
 
 interface Props {
     title: string;
     books: Book[];
+    isExpanded: boolean;
+    onPressExpand: () => void;
 }
 
-export const LendBorrowCategory = ({ title, books }: Props) => {
+export const LendBorrowCategory = ({ title, books, isExpanded, onPressExpand }: Props) => {
+    const TitleC: React.FC = () => (
+        <View style={styles.header}>
+            <Text style={styles.title}>{title} ({books.length})</Text>
+        </View>
+    );
 
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.title}>{title} ({books.length})</Text>
-            </View>
+        <List.Accordion
+            title={<TitleC />}
+            expanded={isExpanded}
+            onPress={onPressExpand}
+            right={() => <></>}
+            style={styles.container}
+        >
             <LendBorrowBooksList books={books} />
-
-        </View>
+        </List.Accordion>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%'
+        width: '100%',
+        height: 50,
+        padding: 0,
+        paddingTop: 8,
+        justifyContent: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: Color.BLACK,
+        backgroundColor: Color.LIGHT_GREY,
     },
     header: {
-        height: 50,
         width: '100%',
-        borderBottomColor: Color.BLACK,
-        borderBottomWidth: 1,
-        justifyContent: 'center',
-        paddingHorizontal: 16
+        paddingLeft: 16,
     },
     title: {
-        fontSize: 16
+        fontSize: 16,
+        letterSpacing: 0.5
     }
 });

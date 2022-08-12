@@ -16,6 +16,7 @@ export const LendBorrowBooksList = ({ books }: Props) => {
          data={books}
          showsVerticalScrollIndicator={false}
          style={styles.container}
+         contentContainerStyle={styles.contentContainer}
          renderItem={({ item: book }) => (
             <LendBorrowBookItem book={book} />
          )}
@@ -25,11 +26,10 @@ export const LendBorrowBooksList = ({ books }: Props) => {
 
 const styles = StyleSheet.create({
    container: {
-      // paddingHorizontal: 24,
       borderRadius,
-      // marginTop: 16,
-      // borderWidth: 5,
-      // width: '100%',
-      backgroundColor: Color.WHITE
+      backgroundColor: Color.WHITE,
+   },
+   contentContainer: {
+      // flex: 1
    },
 });

@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Text, SafeAreaView, StatusBar } from "react-native";
 import { allBooks } from "../../database/fakeData";
-import { Color } from "../../styles/Colors";
 import { LendBorrowCategory } from "./LendBorrowCategory";
 
 export const LendBorrowPage: React.FC = () => {
     const lent = allBooks.filter(book => book.lent !== undefined);
     const borrowed = allBooks.filter(book => book.borrowed !== undefined);
+
+    const [isLentExpanded, setIsLentExpanded] = useState(false);
+    const [isBorrowExpanded, setIsBorrowExpanded] = useState(true);
+
+    const expandLent = () => {
+        setIsLentExpanded(!isLentExpanded);
+        setIsBorrowExpanded(false);
+    }
+    const expandBorrow = () => {
+        setIsBorrowExpanded(!isBorrowExpanded);
+        setIsLentExpanded(false);
+    }
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -16,8 +27,18 @@ export const LendBorrowPage: React.FC = () => {
                 <Text style={styles.title}>Lend/Borrow</Text>
             </View>
 
-            <LendBorrowCategory title="Lent books" books={lent} />
-            <LendBorrowCategory title="Borrowed books" books={borrowed} />
+            <LendBorrowCategory
+                title="Lent books"
+                books={lent}
+                isExpanded={isLentExpanded}
+                onPressExpand={expandLent}
+            />
+            <LendBorrowCategory
+                title="Borrowed books"
+                books={borrowed}
+                isExpanded={isBorrowExpanded}
+                onPressExpand={expandBorrow}
+            />
 
         </SafeAreaView>
     );
@@ -26,7 +47,6 @@ export const LendBorrowPage: React.FC = () => {
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
-        backgroundColor: Color.SALMON_LIGHT,
     },
     container: {
         flex: 1,
