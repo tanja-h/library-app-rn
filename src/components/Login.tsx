@@ -3,12 +3,14 @@ import { StyleSheet, Text, View, TextInput, SafeAreaView, StatusBar, Image, Touc
 import { InfoModal } from "./InfoModal";
 import { Color } from "../styles/Colors";
 import { borderRadius } from "../styles/constants";
+import { RouteName } from "../utils/routeUtils";
+import { NavigationOnly } from "../utils/navigationTypeUtils"
 
 const isEmpty = (text: string) => {
    return text.length === 0;
 }
 
-export const Login: React.FC = () => {
+export const Login = ({ navigation }: NavigationOnly) => {
    const [username, setUsername] = useState('');
    const [password, setPassword] = useState('');
    const [isErrorModalDisplayed, setIsErrorModalDisplayed] = useState(false);
@@ -31,6 +33,10 @@ export const Login: React.FC = () => {
       setIsSuccessModalDisplayed(true);
    }
 
+   const goToMyBooks = () => {
+      setIsSuccessModalDisplayed(false);
+      navigation.navigate(RouteName.HOME, { screen: RouteName.MY_BOOKS });
+   }
    return (
       <SafeAreaView style={styles.mainContainer}>
          <StatusBar barStyle='dark-content' />
@@ -50,7 +56,7 @@ export const Login: React.FC = () => {
          </View>
 
          {isSuccessModalDisplayed && (
-            <InfoModal text="Successfuly loged in!" isSuccess onClose={() => setIsSuccessModalDisplayed(false)} />
+            <InfoModal text="Successfuly loged in!" isSuccess onClose={goToMyBooks} />
          )}
 
          {isErrorModalDisplayed && (

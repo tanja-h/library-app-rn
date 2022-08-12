@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, FlatList } from "react-native";
-import { Book } from "../../database/fakeData";
+import { LendBorrowBookItem } from "./LendBorrowBookItem";
+import { Book } from "../../utils/typeUtils";
 import { Color } from "../../styles/Colors";
 import { borderRadius } from "../../styles/constants";
-import { LendBorrowBookItem } from "./LendBorrowBookItem";
 
 interface Props {
    books: Book[];

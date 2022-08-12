@@ -1,20 +1,61 @@
 import React from "react"
+import { StyleSheet } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
+import { BottomTabNavigationOptions, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
 import { LendBorrowPage } from "./components/lendBorrow/LendBorrowPage"
-import { MyBooks } from "./components/myBooks/MyBooksPage"
-// import { View, Text } from "react-native"
-// import { Login } from "./components/Login"
-// import { NavigationContainer } from '@react-navigation/native';
+import { Login } from "./components/Login"
+import { MyBooks } from "./components/myBooks/MyBooksPage";
+import { Color } from "./styles/Colors";
 
 export const Routes: React.FC = () => {
+    const Tab = createBottomTabNavigator();
+    const Stack = createNativeStackNavigator();
+
+    const noHeaderOption: NativeStackNavigationOptions = { headerShown: false };
+
+    const screenOptions: BottomTabNavigationOptions = {
+        headerTitleAlign: 'left',
+        headerTitleStyle: styles.title,
+        tabBarActiveTintColor: Color.SALMON_DARK,
+        tabBarLabelStyle: styles.tabLabel,
+    };
+
+    const HomeTabs = () => (
+        <Tab.Navigator>
+            <Tab.Screen
+                name="My books"
+                component={MyBooks}
+                options={screenOptions}
+            />
+            <Tab.Screen
+                name="Lend/Borrow"
+                component={LendBorrowPage}
+                options={screenOptions}
+            />
+        </Tab.Navigator>
+    );
 
     return (
-        <>
-            {/* <NavigationContainer> */}
-            {/* // <Text>Route</Text> */}
-            {/* // <Login /> */}
-            {/* <MyBooks /> */}
-            <LendBorrowPage />
-            {/* </NavigationContainer> */}
-        </>
-    )
-}
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name="Login" component={Login} options={noHeaderOption} />
+                <Stack.Screen name="Home" component={HomeTabs} options={noHeaderOption} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+};
+
+const letterSpacing = 0.5;
+
+const styles = StyleSheet.create({
+    title: {
+        color: Color.SALMON_DARK,
+        fontSize: 22,
+        letterSpacing,
+    },
+    tabLabel: {
+        fontSize: 12,
+        letterSpacing,
+    }
+});

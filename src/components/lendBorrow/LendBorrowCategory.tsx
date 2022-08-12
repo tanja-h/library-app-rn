@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { Book } from "../../database/fakeData";
-import { Color } from "../../styles/Colors";
-import { LendBorrowBooksList } from "./LendBorrowBooksList";
 import { List } from 'react-native-paper';
+import { LendBorrowBooksList } from "./LendBorrowBooksList";
+import { Book } from "../../utils/typeUtils";
+import { Color } from "../../styles/Colors";
 
 interface Props {
     title: string;
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderBottomWidth: 1,
         borderBottomColor: Color.BLACK,
-        backgroundColor: Color.LIGHT_GREY,
+        backgroundColor: Color.GREY,
     },
     header: {
         width: '100%',

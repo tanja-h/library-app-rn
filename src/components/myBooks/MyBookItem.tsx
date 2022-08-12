@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import { Book } from "../../database/fakeData";
+import { Book } from "../../utils/typeUtils";
 import { Color } from "../../styles/Colors";
 import { borderRadius } from "../../styles/constants";
 
 interface Props {
-    book: Book
+    book: Book;
 }
 
 export const MyBookItem = ({ book }: Props) => {
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         borderRadius,
         borderWidth: 1,
-        backgroundColor: Color.BERRY_LIGHT,
+        backgroundColor: Color.WHITE,
         marginTop: 8,
         marginRight: 8,
     },

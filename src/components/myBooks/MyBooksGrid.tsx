@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, FlatList } from "react-native";
-import { Book, allBooks } from "../../database/fakeData";
+import { Book } from "../../utils/typeUtils";
 import { borderRadius } from "../../styles/constants";
 import { MyBookItem } from "./MyBookItem";
 
@@ -27,7 +27,7 @@ export const MyBooksGrid = ({ books }: Props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: 24,
+        paddingHorizontal: 20,
         borderRadius,
         marginTop: 16,
     },

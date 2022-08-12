@@ -24,10 +24,6 @@ export const LendBorrowPage: React.FC = () => {
         <SafeAreaView style={styles.mainContainer}>
             <StatusBar barStyle='dark-content' />
 
-            <View style={styles.header}>
-                <Text style={styles.title}>Lend/Borrow</Text>
-            </View>
-
             <LendBorrowCategory
                 title="Lent books"
                 books={lent}
@@ -52,11 +48,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: 24,
-    },
-    header: {
-        paddingHorizontal: 24,
-        paddingBottom: 4,
-        borderBottomWidth: 2,
     },
     title: {
         fontSize: 24,
