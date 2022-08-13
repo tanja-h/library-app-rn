@@ -1,17 +1,18 @@
 import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { Book } from "../../utils/typeUtils";
 import { Color } from "../../styles/Colors";
 import { bookMargin, borderRadius } from "../../styles/constants";
 
 interface Props {
     book: Book;
+    onPress: () => void;
 }
 
-export const LendBorrowBookItem = ({ book }: Props) => {
+export const LendBorrowBookItem = ({ book, onPress }: Props) => {
 
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
             <View style={styles.imageContainer}>
                 <Image source={{ uri: book.coverImage }} style={styles.image} />
             </View>
@@ -27,7 +28,7 @@ export const LendBorrowBookItem = ({ book }: Props) => {
                 <Text style={styles.text}>start: {book.exchange?.startDate.toLocaleDateString()}</Text>
                 <Text style={styles.text}>due: {book.exchange?.dueDate.toLocaleDateString()}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     );
 };
 

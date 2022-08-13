@@ -4,13 +4,17 @@ import { Book } from "../../utils/typeUtils";
 import { bookMargin, horizontalPadding } from "../../styles/constants";
 import { MyBookItem } from "./MyBookItem";
 import { Color } from "../../styles/Colors";
+import { NavigationOnly } from "../../utils/navigationTypeUtils";
+import { RouteName } from "../../utils/routeUtils";
 
-interface Props {
+interface Props extends NavigationOnly {
     books: Book[];
 }
 
-export const MyBooksGrid = ({ books }: Props) => {
-
+export const MyBooksGrid = ({ books, navigation }: Props) => {
+    const goToBookOverview = (id: string) => {
+        navigation.navigate(RouteName.BOOK, { id });
+    }
 
     return (
         <FlatList
@@ -20,7 +24,7 @@ export const MyBooksGrid = ({ books }: Props) => {
             style={styles.container}
             contentContainerStyle={styles.contentContainer}
             renderItem={({ item: book }) => (
-                <MyBookItem book={book} />
+                <MyBookItem book={book} onPress={() => goToBookOverview(book.id)} />
             )}
         />
     );

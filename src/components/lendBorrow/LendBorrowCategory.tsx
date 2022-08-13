@@ -4,15 +4,16 @@ import { List } from 'react-native-paper';
 import { LendBorrowBooksList } from "./LendBorrowBooksList";
 import { Book } from "../../utils/typeUtils";
 import { Color } from "../../styles/Colors";
+import { NavigationOnly } from "../../utils/navigationTypeUtils";
 
-interface Props {
+interface Props extends NavigationOnly {
     title: string;
     books: Book[];
     isExpanded: boolean;
     onPressExpand: () => void;
 }
 
-export const LendBorrowCategory = ({ title, books, isExpanded, onPressExpand }: Props) => {
+export const LendBorrowCategory = ({ title, books, isExpanded, onPressExpand, navigation }: Props) => {
     const TitleC: React.FC = () => (
         <View style={styles.header}>
             <Text style={styles.title}>{title} ({books.length})</Text>
@@ -27,7 +28,7 @@ export const LendBorrowCategory = ({ title, books, isExpanded, onPressExpand }: 
             right={() => <></>}
             style={styles.container}
         >
-            <LendBorrowBooksList books={books} />
+            <LendBorrowBooksList books={books} navigation={navigation} />
         </List.Accordion>
     );
 };

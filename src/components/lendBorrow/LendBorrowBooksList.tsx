@@ -4,12 +4,17 @@ import { LendBorrowBookItem } from "./LendBorrowBookItem";
 import { Book } from "../../utils/typeUtils";
 import { Color } from "../../styles/Colors";
 import { borderRadius, horizontalPadding } from "../../styles/constants";
+import { NavigationOnly } from "../../utils/navigationTypeUtils";
+import { RouteName } from "../../utils/routeUtils";
 
-interface Props {
+interface Props extends NavigationOnly {
    books: Book[];
 }
 
-export const LendBorrowBooksList = ({ books }: Props) => {
+export const LendBorrowBooksList = ({ books, navigation }: Props) => {
+   const goToBookOverview = (id: string) => {
+      navigation.navigate(RouteName.BOOK, { id });
+   }
 
    return (
       <FlatList
@@ -18,7 +23,7 @@ export const LendBorrowBooksList = ({ books }: Props) => {
          style={styles.container}
          contentContainerStyle={styles.contentContainer}
          renderItem={({ item: book }) => (
-            <LendBorrowBookItem book={book} />
+            <LendBorrowBookItem book={book} onPress={() => goToBookOverview(book.id)} />
          )}
       />
    );
