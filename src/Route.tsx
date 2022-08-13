@@ -17,28 +17,27 @@ export const Routes: React.FC = () => {
     const noHeaderOption: NativeStackNavigationOptions = { headerShown: false };
 
     const screenOptions: BottomTabNavigationOptions = {
+        headerStyle: styles.header,
         headerTitleAlign: 'left',
         headerTitleStyle: styles.title,
-        tabBarActiveTintColor: Color.SALMON_DARK,
+        tabBarStyle: styles.tab,
         tabBarLabelStyle: styles.tabLabel,
+        tabBarActiveTintColor: Color.SALMON_DARK,
     };
 
     const HomeTabs = () => (
-        <Tab.Navigator>
+        <Tab.Navigator screenOptions={screenOptions}>
             <Tab.Screen
                 name="My books"
                 component={MyBooks}
-                options={screenOptions}
             />
             <Tab.Screen
                 name="Lend/Borrow"
                 component={LendBorrowPage}
-                options={screenOptions}
             />
             <Tab.Screen
                 name="Search"
                 component={SearchPage}
-                options={screenOptions}
             />
         </Tab.Navigator>
     );
@@ -55,15 +54,25 @@ export const Routes: React.FC = () => {
 };
 
 const letterSpacing = 0.5;
+const borderWidth = 1;
 
 const styles = StyleSheet.create({
+    header: {
+        borderBottomWidth: borderWidth,
+        borderBottomColor: Color.BLACK
+    },
     title: {
         color: Color.SALMON_DARK,
         fontSize: 22,
         letterSpacing,
     },
+    tab: {
+        borderTopWidth: borderWidth,
+        borderTopColor: Color.BLACK,
+        paddingTop: 4,
+    },
     tabLabel: {
         fontSize: 12,
         letterSpacing,
-    }
+    },
 });
