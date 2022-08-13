@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, SafeAreaView, StatusBar } from "react-native";
 import { allBooks } from "../../database/fakeData";
+import { Color } from "../../styles/Colors";
 import { ExchangeType } from "../../utils/typeUtils";
 import { LendBorrowCategory } from "./LendBorrowCategory";
 
@@ -44,6 +45,7 @@ export const LendBorrowPage: React.FC = () => {
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
+        backgroundColor: Color.BERRY_LIGHT,
     },
     container: {
         flex: 1,

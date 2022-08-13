@@ -3,6 +3,7 @@ import { StyleSheet, FlatList } from "react-native";
 import { Book } from "../../utils/typeUtils";
 import { bookMargin, horizontalPadding } from "../../styles/constants";
 import { MyBookItem } from "./MyBookItem";
+import { Color } from "../../styles/Colors";
 
 interface Props {
     books: Book[];
@@ -30,6 +31,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: horizontalPadding,
         paddingRight: horizontalPadding - bookMargin,
+        backgroundColor: Color.BERRY_LIGHT,
     },
     contentContainer: {
         paddingBottom: 16

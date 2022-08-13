@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderBottomWidth: 1,
         borderBottomColor: Color.BLACK,
-        backgroundColor: Color.GREY,
+        backgroundColor: Color.LIGHT_GREY,
     },
     header: {
         width: '100%',
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 16,
-        letterSpacing: 0.5
+        letterSpacing: 0.5,
+        fontWeight: '500',
     }
 });

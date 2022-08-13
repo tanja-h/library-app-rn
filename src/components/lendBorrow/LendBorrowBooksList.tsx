@@ -3,7 +3,7 @@ import { StyleSheet, FlatList } from "react-native";
 import { LendBorrowBookItem } from "./LendBorrowBookItem";
 import { Book } from "../../utils/typeUtils";
 import { Color } from "../../styles/Colors";
-import { borderRadius } from "../../styles/constants";
+import { borderRadius, horizontalPadding } from "../../styles/constants";
 
 interface Props {
    books: Book[];
@@ -27,9 +27,9 @@ export const LendBorrowBooksList = ({ books }: Props) => {
 const styles = StyleSheet.create({
    container: {
       borderRadius,
-      backgroundColor: Color.WHITE,
+      backgroundColor: Color.BERRY_LIGHT,
    },
    contentContainer: {
-      // flex: 1
+      paddingHorizontal: horizontalPadding,
    },
 });

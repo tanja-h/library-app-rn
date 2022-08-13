@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import { Book } from "../../database/fakeData";
+import { Book } from "../../utils/typeUtils";
+import { Color } from "../../styles/Colors";
+import { bookMargin, borderRadius } from "../../styles/constants";
 
 interface Props {
     book: Book;
@@ -37,6 +39,10 @@ const styles = StyleSheet.create({
         borderBottomWidth: StyleSheet.hairlineWidth,
         flexDirection: 'row',
         flex: 1,
+        backgroundColor: Color.WHITE,
+        borderRadius,
+        borderWidth: 1,
+        marginTop: bookMargin,
     },
     imageContainer: {
         flex: 1,
