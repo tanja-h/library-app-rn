@@ -9,6 +9,7 @@ import { Login } from "./components/Login"
 import { MyBooks } from "./components/myBooks/MyBooksPage";
 import { SearchPage } from "./components/search/SearchPage";
 import { BookPage } from "./components/book/BookPage";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export const Routes: React.FC = () => {
     const Tab = createBottomTabNavigator();
@@ -30,14 +31,29 @@ export const Routes: React.FC = () => {
             <Tab.Screen
                 name="My books"
                 component={MyBooks}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon name="book-open-page-variant-outline" size={size} color={color} />
+                    )
+                }}
             />
             <Tab.Screen
                 name="Lend/Borrow"
                 component={LendBorrowPage}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon name="swap-vertical-variant" size={size} color={color} />
+                    )
+                }}
             />
             <Tab.Screen
                 name="Search"
                 component={SearchPage}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon name="magnify" size={size} color={color} />
+                    )
+                }}
             />
         </Tab.Navigator>
     );

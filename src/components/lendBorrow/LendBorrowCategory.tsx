@@ -25,7 +25,6 @@ export const LendBorrowCategory = ({ title, books, isExpanded, onPressExpand, na
             title={<TitleC />}
             expanded={isExpanded}
             onPress={onPressExpand}
-            right={() => <></>}
             style={styles.container}
         >
             <LendBorrowBooksList books={books} navigation={navigation} />
@@ -39,6 +38,7 @@ const styles = StyleSheet.create({
         height: 50,
         padding: 0,
         paddingTop: 8,
+        paddingHorizontal: 16,
         justifyContent: 'center',
         borderBottomWidth: 1,
         borderBottomColor: Color.BLACK,
@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
     },
     header: {
         width: '100%',
-        paddingLeft: 16,
     },
     title: {
         fontSize: 16,

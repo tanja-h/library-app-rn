@@ -11,11 +11,11 @@ function getBooks(genre: Genre) {
 }
 
 const categories = [
-    { title: Genre.FANTASY, books: getBooks(Genre.FANTASY) },
-    { title: Genre.DRAMA, books: getBooks(Genre.DRAMA) },
-    { title: Genre.ROMANCE, books: getBooks(Genre.ROMANCE) },
-    { title: Genre.HISTORICAL, books: getBooks(Genre.HISTORICAL) },
-    { title: Genre.THRILLER, books: getBooks(Genre.THRILLER) },
+    { genre: Genre.FANTASY, books: getBooks(Genre.FANTASY) },
+    { genre: Genre.DRAMA, books: getBooks(Genre.DRAMA) },
+    { genre: Genre.ROMANCE, books: getBooks(Genre.ROMANCE) },
+    { genre: Genre.HISTORICAL, books: getBooks(Genre.HISTORICAL) },
+    { genre: Genre.THRILLER, books: getBooks(Genre.THRILLER) },
 ];
 
 export const SearchPage = ({ navigation }: NavigationOnly) => {
@@ -29,8 +29,8 @@ export const SearchPage = ({ navigation }: NavigationOnly) => {
                 contentContainerStyle={styles.contentContainer}
                 showsVerticalScrollIndicator={false}
             >
-                {categories.map(({ title, books }) => (
-                    books.length > 0 && <SearchGallery books={books} title={title} navigation={navigation} />
+                {categories.map(({ genre, books }) => (
+                    books.length > 0 && <SearchGallery books={books} title={genre} navigation={navigation} key={genre} />
                 ))}
             </ScrollView>
         </SafeAreaView>
