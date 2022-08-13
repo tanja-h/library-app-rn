@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import { Book } from "../../utils/typeUtils";
 import { Color } from "../../styles/Colors";
-import { bookMargin, borderRadius } from "../../styles/constants";
+import { activeOpacity, bookMargin, borderRadius } from "../../styles/constants";
 
 interface Props {
     book: Book;
@@ -11,7 +11,7 @@ interface Props {
 
 export const MyBookItem = ({ book, onPress }: Props) => {
     return (
-        <TouchableOpacity style={styles.container} onPress={onPress}>
+        <TouchableOpacity style={styles.container} onPress={onPress} activeOpacity={activeOpacity}>
             <Image source={{ uri: book.coverImage }} style={styles.image} />
             <Text style={styles.title}>{book.title}</Text>
             <Text style={styles.genre}>{book.genre}</Text>

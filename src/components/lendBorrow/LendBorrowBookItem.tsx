@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { Book } from "../../utils/typeUtils";
 import { Color } from "../../styles/Colors";
-import { bookMargin, borderRadius } from "../../styles/constants";
+import { activeOpacity, bookMargin, borderRadius } from "../../styles/constants";
 
 interface Props {
     book: Book;
@@ -12,7 +12,7 @@ interface Props {
 export const LendBorrowBookItem = ({ book, onPress }: Props) => {
 
     return (
-        <TouchableOpacity style={styles.container} onPress={onPress}>
+        <TouchableOpacity style={styles.container} onPress={onPress} activeOpacity={activeOpacity}>
             <View style={styles.imageContainer}>
                 <Image source={{ uri: book.coverImage }} style={styles.image} />
             </View>

@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { Book } from "../../utils/typeUtils";
 import { Color } from "../../styles/Colors";
-import { bookMargin, borderRadius } from "../../styles/constants";
+import { activeOpacity, bookMargin, borderRadius } from "../../styles/constants";
 
 interface Props {
     book: Book;
@@ -13,7 +13,7 @@ interface Props {
 export const SearchBookItem = ({ book, width, onPress }: Props) => {
 
     return (
-        <TouchableOpacity style={[styles.container, { width }]} onPress={onPress}>
+        <TouchableOpacity style={[styles.container, { width }]} onPress={onPress} activeOpacity={activeOpacity}>
             <Image source={{ uri: book.coverImage }} style={styles.image} />
             <View style={styles.info}>
                 <Text style={styles.title}>{book.title}</Text>
