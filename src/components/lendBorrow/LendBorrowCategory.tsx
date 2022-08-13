@@ -14,21 +14,23 @@ interface Props extends NavigationOnly {
 }
 
 export const LendBorrowCategory = ({ title, books, isExpanded, onPressExpand, navigation }: Props) => {
-    const TitleC: React.FC = () => (
+    const CategoryTitle: React.FC = () => (
         <View style={styles.header}>
             <Text style={styles.title}>{title} ({books.length})</Text>
         </View>
     );
 
     return (
-        <List.Accordion
-            title={<TitleC />}
-            expanded={isExpanded}
-            onPress={onPressExpand}
-            style={styles.container}
-        >
-            <LendBorrowBooksList books={books} navigation={navigation} />
-        </List.Accordion>
+        <View style={{ flexGrow: 0, flexShrink: isExpanded ? 1 : 0 }}        >
+            <List.Accordion
+                title={<CategoryTitle />}
+                expanded={isExpanded}
+                onPress={onPressExpand}
+                style={styles.container}
+            >
+                <LendBorrowBooksList books={books} navigation={navigation} />
+            </List.Accordion>
+        </View>
     );
 };
 
@@ -40,8 +42,8 @@ const styles = StyleSheet.create({
         paddingTop: 8,
         paddingHorizontal: 16,
         justifyContent: 'center',
-        borderBottomWidth: 1,
-        borderBottomColor: Color.BLACK,
+        borderWidth: StyleSheet.hairlineWidth,
+        borderColor: Color.BLACK,
         backgroundColor: Color.LIGHT_GREY,
     },
     header: {

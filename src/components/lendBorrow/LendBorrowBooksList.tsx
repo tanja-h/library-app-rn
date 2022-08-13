@@ -29,12 +29,15 @@ export const LendBorrowBooksList = ({ books, navigation }: Props) => {
    );
 };
 
+const tabNavigationHeight = 80;
+
 const styles = StyleSheet.create({
    container: {
-      borderRadius,
       backgroundColor: Color.BERRY_LIGHT,
+      height: '100%',
    },
    contentContainer: {
+      paddingBottom: tabNavigationHeight, //hack
       paddingHorizontal: horizontalPadding,
    },
 });

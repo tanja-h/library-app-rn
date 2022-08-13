@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, SafeAreaView, StatusBar } from "react-native";
+import { StyleSheet, SafeAreaView, StatusBar, View } from "react-native";
 import { LendBorrowCategory } from "./LendBorrowCategory";
 import { allBooks } from "../../database/fakeData";
 import { Color } from "../../styles/Colors";
@@ -26,21 +26,22 @@ export const LendBorrowPage = ({ navigation }: NavigationOnly) => {
         <SafeAreaView style={styles.mainContainer}>
             <StatusBar barStyle='dark-content' />
 
-            <LendBorrowCategory
-                title="Lent books"
-                books={lent}
-                isExpanded={isLentExpanded}
-                onPressExpand={expandLent}
-                navigation={navigation}
-            />
-            <LendBorrowCategory
-                title="Borrowed books"
-                books={borrowed}
-                isExpanded={isBorrowExpanded}
-                onPressExpand={expandBorrow}
-                navigation={navigation}
-            />
-
+            <View style={styles.container}>
+                <LendBorrowCategory
+                    title="Lent books"
+                    books={lent}
+                    isExpanded={isLentExpanded}
+                    onPressExpand={expandLent}
+                    navigation={navigation}
+                />
+                <LendBorrowCategory
+                    title="Borrowed books"
+                    books={borrowed}
+                    isExpanded={isBorrowExpanded}
+                    onPressExpand={expandBorrow}
+                    navigation={navigation}
+                />
+            </View>
         </SafeAreaView>
     );
 };
@@ -51,8 +52,8 @@ const styles = StyleSheet.create({
         backgroundColor: Color.BERRY_LIGHT,
     },
     container: {
-        flex: 1,
-        paddingHorizontal: 24,
+        flexGrow: 1,
+        flexShrink: 1,
     },
     title: {
         fontSize: 24,
@@ -60,5 +61,4 @@ const styles = StyleSheet.create({
         marginTop: 16,
         letterSpacing: 1,
     },
-
 });
