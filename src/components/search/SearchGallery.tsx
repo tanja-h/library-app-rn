@@ -1,11 +1,13 @@
 import React from "react";
 import { StyleSheet, FlatList, Dimensions, View } from "react-native";
 import { Text } from "react-native-paper";
-import { Book } from "../../utils/typeUtils";
-import { bookMargin } from "../../styles/constants";
 import { SearchBookItem } from "./SearchBookItem";
+import { bookMargin } from "../../styles/constants";
+import { Book } from "../../utils/typeUtils";
+import { NavigationOnly } from "../../utils/navigationTypeUtils";
+import { RouteName } from "../../utils/routeUtils";
 
-interface Props {
+interface Props extends NavigationOnly {
     title: string;
     books: Book[];
 }
@@ -14,7 +16,10 @@ const { width: screenWidth } = Dimensions.get("window");
 const padding: number = 20;
 const width = (screenWidth - 2 * padding - bookMargin) / 2;
 
-export const SearchGallery = ({ title, books }: Props) => {
+export const SearchGallery = ({ title, books, navigation }: Props) => {
+    const goToBookOverview = (id: string) => {
+        navigation.navigate(RouteName.BOOK, { id });
+    }
 
 
     return (
@@ -28,10 +33,10 @@ export const SearchGallery = ({ title, books }: Props) => {
                 style={styles.container}
                 contentContainerStyle={styles.contentContainer}
                 snapToInterval={width + bookMargin}
-                renderItem={({ item: book }) => (
-                    <SearchBookItem book={book} width={width} />
-                )}
                 keyExtractor={(item) => item.id}
+                renderItem={({ item: book }) => (
+                    <SearchBookItem book={book} width={width} onPress={() => goToBookOverview(book.id)} />
+                )}
             />
         </View>
     );

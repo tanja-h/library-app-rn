@@ -7,11 +7,13 @@ import { bookMargin, borderRadius } from "../../styles/constants";
 interface Props {
     book: Book;
     width: number;
+    onPress: () => void;
 }
 
-export const SearchBookItem = ({ book, width }: Props) => {
+export const SearchBookItem = ({ book, width, onPress }: Props) => {
+
     return (
-        <TouchableOpacity style={[styles.container, { width }]}>
+        <TouchableOpacity style={[styles.container, { width }]} onPress={onPress}>
             <Image source={{ uri: book.coverImage }} style={styles.image} />
             <View style={styles.info}>
                 <Text style={styles.title}>{book.title}</Text>

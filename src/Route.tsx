@@ -3,11 +3,12 @@ import { StyleSheet } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { BottomTabNavigationOptions, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
+import { Color } from "./styles/Colors";
 import { LendBorrowPage } from "./components/lendBorrow/LendBorrowPage"
 import { Login } from "./components/Login"
 import { MyBooks } from "./components/myBooks/MyBooksPage";
-import { Color } from "./styles/Colors";
 import { SearchPage } from "./components/search/SearchPage";
+import { BookPage } from "./components/book/BookPage";
 
 export const Routes: React.FC = () => {
     const Tab = createBottomTabNavigator();
@@ -47,6 +48,7 @@ export const Routes: React.FC = () => {
             <Stack.Navigator>
                 <Stack.Screen name="Login" component={Login} options={noHeaderOption} />
                 <Stack.Screen name="Home" component={HomeTabs} options={noHeaderOption} />
+                <Stack.Screen name="Book" component={BookPage} />
             </Stack.Navigator>
         </NavigationContainer>
     );

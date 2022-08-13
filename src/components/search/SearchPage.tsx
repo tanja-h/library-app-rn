@@ -4,6 +4,7 @@ import { SearchGallery } from "./SearchGallery";
 import { allBooks } from "../../database/fakeData";
 import { Color } from "../../styles/Colors";
 import { Genre } from "../../utils/typeUtils";
+import { NavigationOnly } from "../../utils/navigationTypeUtils";
 
 function getBooks(genre: Genre) {
     return allBooks.filter(book => book.genre === genre);
@@ -17,7 +18,7 @@ const categories = [
     { title: Genre.THRILLER, books: getBooks(Genre.THRILLER) },
 ];
 
-export const SearchPage: React.FC = () => {
+export const SearchPage = ({ navigation }: NavigationOnly) => {
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -29,7 +30,7 @@ export const SearchPage: React.FC = () => {
                 showsVerticalScrollIndicator={false}
             >
                 {categories.map(({ title, books }) => (
-                    books.length > 0 && <SearchGallery books={books} title={title} />
+                    books.length > 0 && <SearchGallery books={books} title={title} navigation={navigation} />
                 ))}
             </ScrollView>
         </SafeAreaView>
