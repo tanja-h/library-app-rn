@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, SafeAreaView, StatusBar, View } from "react-native";
 import { LendBorrowCategory } from "./LendBorrowCategory";
-import { allBooks } from "../../database/fakeData";
+import { allBooks } from "../../database/booksData";
 import { Color } from "../../styles/Colors";
 import { NavigationOnly } from "../../utils/navigationTypeUtils";
 import { ExchangeType } from "../../utils/typeUtils";

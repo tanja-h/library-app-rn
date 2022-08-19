@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, SafeAreaView, StatusBar, ScrollView } from "react-native";
 import { SearchGallery } from "./SearchGallery";
-import { allBooks } from "../../database/fakeData";
+import { allBooks } from "../../database/booksData";
 import { Color } from "../../styles/Colors";
 import { Genre } from "../../utils/typeUtils";
 import { NavigationOnly } from "../../utils/navigationTypeUtils";

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, SafeAreaView, StatusBar, Image, Text, View } from "react-native";
 import { ExchangeUser } from "./ExchangeUser";
-import { allBooks } from "../../database/fakeData";
+import { allBooks } from "../../database/booksData";
 import { Color } from "../../styles/Colors";
 import { horizontalPadding } from "../../styles/constants";
 

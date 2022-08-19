@@ -6,7 +6,7 @@ import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react
 import { Color } from "./styles/Colors";
 import { LendBorrowPage } from "./components/lendBorrow/LendBorrowPage"
 import { Login } from "./components/Login"
-import { MyBooks } from "./components/myBooks/MyBooksPage";
+import { MyBooksPage } from "./components/myBooks/MyBooksPage";
 import { SearchPage } from "./components/search/SearchPage";
 import { BookPage } from "./components/book/BookPage";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -30,7 +30,7 @@ export const Routes: React.FC = () => {
         <Tab.Navigator screenOptions={screenOptions}>
             <Tab.Screen
                 name="My books"
-                component={MyBooks}
+                component={MyBooksPage}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="book-open-page-variant-outline" size={size} color={color} />
