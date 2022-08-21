@@ -49,7 +49,7 @@ export const LendBorrowPage = ({ navigation }: NavigationOnly) => {
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
-        backgroundColor: Color.BERRY_LIGHT,
+        backgroundColor: Color.SALMON,
     },
     container: {
         flexGrow: 1,

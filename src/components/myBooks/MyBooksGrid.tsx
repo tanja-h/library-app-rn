@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: horizontalPadding,
         paddingRight: horizontalPadding - bookMargin,
-        backgroundColor: Color.BERRY_LIGHT,
     },
     contentContainer: {
         paddingBottom: 16

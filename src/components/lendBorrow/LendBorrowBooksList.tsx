@@ -33,7 +33,7 @@ const tabNavigationHeight = 80;
 
 const styles = StyleSheet.create({
    container: {
-      backgroundColor: Color.BERRY_LIGHT,
+      backgroundColor: Color.SALMON,
       height: '100%',
    },
    contentContainer: {

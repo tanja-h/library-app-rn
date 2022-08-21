@@ -5,11 +5,12 @@ import { BottomTabNavigationOptions, createBottomTabNavigator } from "@react-nav
 import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
 import { Color } from "./styles/Colors";
 import { LendBorrowPage } from "./components/lendBorrow/LendBorrowPage"
-import { Login } from "./components/Login"
+import { Login } from "./components/login/Login"
 import { MyBooksPage } from "./components/myBooks/MyBooksPage";
 import { SearchPage } from "./components/search/SearchPage";
 import { BookPage } from "./components/book/BookPage";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { ProfilePage } from "./components/profile/ProfilePage";
 
 export const Routes: React.FC = () => {
     const Tab = createBottomTabNavigator();
@@ -52,6 +53,15 @@ export const Routes: React.FC = () => {
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="magnify" size={size} color={color} />
+                    )
+                }}
+            />
+            <Tab.Screen
+                name="Profile"
+                component={ProfilePage}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon name="account" size={size} color={color} />
                     )
                 }}
             />

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, SafeAreaView, StatusBar, Image, TouchableOpacity } from "react-native";
-import { InfoModal } from "./InfoModal";
-import { Color } from "../styles/Colors";
-import { borderRadius } from "../styles/constants";
-import { RouteName } from "../utils/routeUtils";
-import { NavigationOnly } from "../utils/navigationTypeUtils"
+import { LoginInfoModal } from "./LoginInfoModal";
+import { Color } from "../../styles/Colors";
+import { borderRadius } from "../../styles/constants";
+import { RouteName } from "../../utils/routeUtils";
+import { NavigationOnly } from "../../utils/navigationTypeUtils"
 
 const isEmpty = (text: string) => {
    return text.length === 0;
@@ -56,11 +56,11 @@ export const Login = ({ navigation }: NavigationOnly) => {
          </View>
 
          {isSuccessModalDisplayed && (
-            <InfoModal text="Successfuly loged in!" isSuccess onClose={goToMyBooks} />
+            <LoginInfoModal text="Successfuly loged in!" isSuccess onClose={goToMyBooks} />
          )}
 
          {isErrorModalDisplayed && (
-            <InfoModal text="Error while logging in!" isSuccess={false} onClose={() => setIsErrorModalDisplayed(false)} />
+            <LoginInfoModal text="Error while logging in!" isSuccess={false} onClose={() => setIsErrorModalDisplayed(false)} />
          )}
       </SafeAreaView>
    );

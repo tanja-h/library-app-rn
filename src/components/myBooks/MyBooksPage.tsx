@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, SafeAreaView, StatusBar } from "react-native";
 import { allBooks } from "../../database/booksData";
+import { Color } from "../../styles/Colors";
 import { NavigationOnly } from "../../utils/navigationTypeUtils";
 import { MyBooksGrid } from "./MyBooksGrid";
 
@@ -19,6 +20,7 @@ export const MyBooksPage = ({ navigation }: NavigationOnly) => {
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
+        backgroundColor: Color.BERRY_LIGHT,
     },
     title: {
         fontSize: 24,
