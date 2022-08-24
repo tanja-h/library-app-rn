@@ -8,7 +8,7 @@ export const AddBookIcon: React.FC = () => {
 
     return (
         <TouchableOpacity style={styles.container} onPress={() => { }}>
-            < Icon name="plus-circle-outline" size={30} color={Color.SALMON_DARK} />
+            < Icon name="sticker-plus-outline" size={30} color={Color.SALMON_DARK} />
         </TouchableOpacity>
     )
 }
