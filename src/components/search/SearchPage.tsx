@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, SafeAreaView, StatusBar, ScrollView } from "react-native";
 import { SearchGallery } from "./SearchGallery";
 import { allBooks } from "../../database/booksData";
 import { Color } from "../../styles/Colors";
+import { horizontalPadding } from "../../styles/constants";
 import { Genre } from "../../utils/typeUtils";
 import { NavigationOnly } from "../../utils/navigationTypeUtils";
+import { TextInput } from "react-native-paper";
 
 function getBooks(genre: Genre) {
     return allBooks.filter(book => book.genre === genre);
@@ -19,19 +21,39 @@ const categories = [
 ];
 
 export const SearchPage = ({ navigation }: NavigationOnly) => {
+    const [criteria, setCriteria] = useState('');
 
     return (
         <SafeAreaView style={styles.mainContainer}>
             <StatusBar barStyle='dark-content' />
 
+            <TextInput
+                value={criteria}
+                onChangeText={setCriteria}
+                style={styles.input}
+                autoCapitalize='none'
+                autoCorrect={false}
+                placeholder='Enter search criteria here ✏️'
+                placeholderTextColor={Color.SALMON_DARK}
+                underlineColor={Color.SALMON_DARK}
+                activeUnderlineColor={Color.SALMON_DARK}
+                inlineImageLeft={criteria}
+            />
             <ScrollView
                 style={styles.container}
                 contentContainerStyle={styles.contentContainer}
                 showsVerticalScrollIndicator={false}
             >
-                {categories.map(({ genre, books }) => (
-                    books.length > 0 && <SearchGallery books={books} title={genre} navigation={navigation} key={genre} />
-                ))}
+                {categories.map(({ genre, books }) => {
+                    const booksToDisplay = criteria ? books.filter(books => books.title.toLowerCase().includes(criteria.toLowerCase())) : books;
+
+                    return (
+                        booksToDisplay.length > 0 ?
+                            <SearchGallery books={booksToDisplay} title={genre} navigation={navigation} key={genre} />
+                            : null
+                    )
+                }
+                )}
             </ScrollView>
         </SafeAreaView>
     );
@@ -54,4 +76,9 @@ const styles = StyleSheet.create({
         marginTop: 16,
         letterSpacing: 1,
     },
+    input: {
+        backgroundColor: Color.SALMON_LIGHT,
+        height: 40,
+        paddingHorizontal: horizontalPadding
+    }
 });
