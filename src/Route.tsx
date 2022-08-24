@@ -1,5 +1,5 @@
 import React from "react"
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { BottomTabNavigationOptions, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
@@ -11,8 +11,9 @@ import { SearchPage } from "./components/search/SearchPage";
 import { BookPage } from "./components/book/BookPage";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ProfilePage } from "./components/profile/ProfilePage";
-import { borderRadius, horizontalPadding } from "./styles/constants";
 import { AddBookIcon } from "./components/AddBookIcon";
+import { AddBookPage } from "./components/addBook/AddBookPage";
+import { RouteName } from "./utils/routeUtils";
 
 export const Routes: React.FC = () => {
     const Tab = createBottomTabNavigator();
@@ -34,23 +35,22 @@ export const Routes: React.FC = () => {
             <Tab.Screen
                 name="My books"
                 component={MyBooksPage}
-                options={{
+                options={({ navigation }) => ({
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="book-open-page-variant-outline" size={size} color={color} />
                     ),
-                    headerRight: () => <AddBookIcon />
-                }
-                }
+                    headerRight: () => <AddBookIcon navigation={navigation} />,
+                })}
             />
             <Tab.Screen
                 name="Lend/Borrow"
                 component={LendBorrowPage}
-                options={{
+                options={({ navigation }) => ({
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="swap-vertical-variant" size={size} color={color} />
                     ),
-                    headerRight: () => <AddBookIcon />
-                }}
+                    headerRight: () => <AddBookIcon navigation={navigation} />,
+                })}
             />
             <Tab.Screen
                 name="Search"
@@ -74,11 +74,12 @@ export const Routes: React.FC = () => {
     );
 
     return (
-        <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="Login" component={Login} options={noHeaderOption} />
-                <Stack.Screen name="Home" component={HomeTabs} options={noHeaderOption} />
-                <Stack.Screen name="Book" component={BookPage} />
+        <NavigationContainer >
+            <Stack.Navigator screenOptions={{ headerTintColor: Color.SALMON_DARK }} >
+                <Stack.Screen name={RouteName.LOGIN} component={Login} options={noHeaderOption} />
+                <Stack.Screen name={RouteName.HOME} component={HomeTabs} options={noHeaderOption} />
+                <Stack.Screen name={RouteName.BOOK} component={BookPage} />
+                <Stack.Screen name={RouteName.ADD_BOOK} component={AddBookPage} />
             </Stack.Navigator>
         </NavigationContainer>
     );

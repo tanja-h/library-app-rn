@@ -5,4 +5,5 @@ export enum RouteName {
     LEND_BORROW = "LendBorrow",
     SEARCH = "Search",
     BOOK = "Book",
+    ADD_BOOK = "AddBook",
 }
