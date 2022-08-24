@@ -1,5 +1,5 @@
 import React from "react"
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { BottomTabNavigationOptions, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
@@ -11,6 +11,8 @@ import { SearchPage } from "./components/search/SearchPage";
 import { BookPage } from "./components/book/BookPage";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ProfilePage } from "./components/profile/ProfilePage";
+import { borderRadius, horizontalPadding } from "./styles/constants";
+import { AddBookIcon } from "./components/AddBookIcon";
 
 export const Routes: React.FC = () => {
     const Tab = createBottomTabNavigator();
@@ -35,8 +37,10 @@ export const Routes: React.FC = () => {
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="book-open-page-variant-outline" size={size} color={color} />
-                    )
-                }}
+                    ),
+                    headerRight: () => <AddBookIcon />
+                }
+                }
             />
             <Tab.Screen
                 name="Lend/Borrow"
@@ -44,7 +48,8 @@ export const Routes: React.FC = () => {
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="swap-vertical-variant" size={size} color={color} />
-                    )
+                    ),
+                    headerRight: () => <AddBookIcon />
                 }}
             />
             <Tab.Screen
