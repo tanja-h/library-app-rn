@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, SafeAreaView, StatusBar, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity } from "react-native";
 import { Color } from "../../styles/Colors";
 import { borderRadius } from "../../styles/constants";
 import { NavigationOnly } from "../../utils/navigationTypeUtils";
 import { RouteName } from "../../utils/routeUtils";
 import { LogoutInfoModal } from "./LogoutInfoModal";
+import { UserImage } from "./UserImage";
 
 export const ProfilePage = ({ navigation }: NavigationOnly) => {
     const [isLogoutModalDisplayed, setIsLogoutModalDisplayed] = useState(false);
@@ -14,8 +15,7 @@ export const ProfilePage = ({ navigation }: NavigationOnly) => {
             <StatusBar barStyle='dark-content' />
 
             <View style={styles.container}>
-                <Image source={{ uri: 'https://picsum.photos/id/24/350' }} style={styles.image} />
-
+                <UserImage />
                 <Text style={styles.title}>Name</Text>
 
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => setIsLogoutModalDisplayed(true)}>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: '600',
-        marginTop: 16,
+        marginTop: 48,
         letterSpacing: 1
     },
     buttonContainer: {
