@@ -4,15 +4,12 @@ import { ExchangeUser } from "./ExchangeUser";
 import { allBooks } from "../../database/booksData";
 import { Color } from "../../styles/Colors";
 import { horizontalPadding } from "../../styles/constants";
+import { Book } from "../../utils/typeUtils";
 
-interface Props {
-    id: string;
-}
+export const BookPage = ({ route: { params } }: any) => {
+    const { id } = params;
 
-export const BookPage = ({ id }: Props) => {
-    console.log('id', id);
-
-    const book = allBooks.find(b => b.id === id) ?? allBooks[9]; //TODO: REMOVE
+    const book = allBooks.find(b => b.id === id) ?? {} as Book;
 
     return (
         <SafeAreaView style={styles.mainContainer}>
