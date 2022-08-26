@@ -8,7 +8,7 @@ export type RootStackParamList = {
     [RouteName.HOME]: { screen: RouteName };
     [RouteName.SEARCH]: undefined;
     [RouteName.BOOK]: { id: string };
-    [RouteName.ADD_BOOK]: undefined;
+    [RouteName.ADD_NEW_BOOK]: { isExchange?: boolean };
 };
 
 export type NavigationProps<T extends keyof RootStackParamList = any> = StackScreenProps<RootStackParamList, T>;

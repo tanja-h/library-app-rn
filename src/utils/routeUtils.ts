@@ -1,9 +1,10 @@
 export enum RouteName {
     LOGIN = "Login",
     HOME = "Home",
-    MY_BOOKS = "MyBooks",
-    LEND_BORROW = "LendBorrow",
+    MY_BOOKS = "My Books",
+    LEND_BORROW = "Lend/Borrow",
     SEARCH = "Search",
     BOOK = "Book",
-    ADD_BOOK = "AddBook",
+    ADD_NEW_BOOK = "Add New Book",
+    PROFILE = "Profile",
 }

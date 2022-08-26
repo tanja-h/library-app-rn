@@ -10,12 +10,10 @@ interface Props extends NavigationOnly {
     isExchange?: boolean;
 }
 
-export const AddBookIcon: React.FC<Props> = ({ navigation }) => {
-    // const params = isExchange !== undefined ? { isExchange } : undefined;
-    // console.log('params', params);
+export const AddBookIcon = ({ navigation, isExchange }: Props) => {
 
     return (
-        <TouchableOpacity style={styles.container} onPress={() => { navigation.navigate(RouteName.ADD_BOOK) }}>
+        <TouchableOpacity style={styles.container} onPress={() => navigation.navigate({ name: RouteName.ADD_NEW_BOOK, params: { isExchange } })}>
             < Icon name="sticker-plus-outline" size={30} color={Color.SALMON_DARK} />
         </TouchableOpacity>
     )

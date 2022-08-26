@@ -12,7 +12,7 @@ import { BookPage } from "./components/book/BookPage";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ProfilePage } from "./components/profile/ProfilePage";
 import { AddBookIcon } from "./components/AddBookIcon";
-import { AddBookPage } from "./components/addBook/AddBookPage";
+import { AddNewBookPage } from "./components/addNewBook/AddNewBookPage"
 import { RouteName } from "./utils/routeUtils";
 
 export const Routes: React.FC = () => {
@@ -33,7 +33,7 @@ export const Routes: React.FC = () => {
     const HomeTabs = () => (
         <Tab.Navigator screenOptions={screenOptions}>
             <Tab.Screen
-                name="My books"
+                name={RouteName.MY_BOOKS}
                 component={MyBooksPage}
                 options={({ navigation }) => ({
                     tabBarIcon: ({ color, size }) => (
@@ -43,17 +43,17 @@ export const Routes: React.FC = () => {
                 })}
             />
             <Tab.Screen
-                name="Lend/Borrow"
+                name={RouteName.LEND_BORROW}
                 component={LendBorrowPage}
                 options={({ navigation }) => ({
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="swap-vertical-variant" size={size} color={color} />
                     ),
-                    headerRight: () => <AddBookIcon navigation={navigation} />,
+                    headerRight: () => <AddBookIcon navigation={navigation} isExchange />,
                 })}
             />
             <Tab.Screen
-                name="Search"
+                name={RouteName.SEARCH}
                 component={SearchPage}
                 options={{
                     tabBarIcon: ({ color, size }) => (
@@ -62,7 +62,7 @@ export const Routes: React.FC = () => {
                 }}
             />
             <Tab.Screen
-                name="Profile"
+                name={RouteName.PROFILE}
                 component={ProfilePage}
                 options={{
                     tabBarIcon: ({ color, size }) => (
@@ -79,7 +79,7 @@ export const Routes: React.FC = () => {
                 <Stack.Screen name={RouteName.LOGIN} component={Login} options={noHeaderOption} />
                 <Stack.Screen name={RouteName.HOME} component={HomeTabs} options={noHeaderOption} />
                 <Stack.Screen name={RouteName.BOOK} component={BookPage} />
-                <Stack.Screen name={RouteName.ADD_BOOK} component={AddBookPage} />
+                <Stack.Screen name={RouteName.ADD_NEW_BOOK} component={AddNewBookPage} />
             </Stack.Navigator>
         </NavigationContainer>
     );

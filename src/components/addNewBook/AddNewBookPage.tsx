@@ -3,16 +3,17 @@ import { StyleSheet, SafeAreaView, StatusBar, Text, View, TextInput, KeyboardAvo
 // import { allBooks } from "../../database/booksData";
 import { Color } from "../../styles/Colors";
 import { borderRadius, horizontalPadding } from "../../styles/constants";
+import { NavigationProps } from "../../utils/navigationTypeUtils";
 import { Genre } from "../../utils/typeUtils";
 import { ImageUpload } from "../ImageUpload";
 
 
-export const AddBookPage = () => {
+export const AddNewBookPage = ({ route }: NavigationProps) => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [genre, setGenre] = useState(Genre.DRAMA);
     const [pagesCount, setPagesCount] = useState(0);
-    const [isExchange, setIsExchange] = useState(false);
+    const [isExchange, setIsExchange] = useState(route.params?.isExchange);
 
     return (
         <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
@@ -47,6 +48,10 @@ export const AddBookPage = () => {
                             <Text>exchange</Text>
                         )
                         }
+
+                        <TouchableOpacity onPress={() => setIsExchange(!isExchange)} style={styles.addExchangeContainer}>
+                            <Text>Save Book</Text>
+                        </TouchableOpacity>
                     </View>
                 </SafeAreaView >
             </TouchableWithoutFeedback>
@@ -54,6 +59,8 @@ export const AddBookPage = () => {
     );
 
 };
+
+const padding = 8;
 
 const styles = StyleSheet.create({
     mainContainer: {
@@ -67,7 +74,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: 8,
+        paddingHorizontal: padding,
         marginTop: 24,
     },
     input: {
@@ -78,7 +85,7 @@ const styles = StyleSheet.create({
         marginLeft: 16,
         borderRadius,
         borderWidth: StyleSheet.hairlineWidth,
-        paddingHorizontal: 8,
+        paddingHorizontal: padding,
         textAlign: 'right',
     },
     text: {
@@ -92,7 +99,7 @@ const styles = StyleSheet.create({
         height: 40,
         width: 70,
         marginLeft: 16,
-        paddingHorizontal: 8,
+        paddingHorizontal: padding,
         textAlign: 'right',
         borderRadius,
         borderWidth: StyleSheet.hairlineWidth,

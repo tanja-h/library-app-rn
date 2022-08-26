@@ -4,13 +4,13 @@ import { LoginInfoModal } from "./LoginInfoModal";
 import { Color } from "../../styles/Colors";
 import { borderRadius } from "../../styles/constants";
 import { RouteName } from "../../utils/routeUtils";
-import { NavigationOnly } from "../../utils/navigationTypeUtils"
+import { NavigationOnly, NavigationProps } from "../../utils/navigationTypeUtils"
 
 const isEmpty = (text: string) => {
    return text.length === 0;
 }
 
-export const Login = ({ navigation }: NavigationOnly) => {
+export const Login = ({ navigation }: NavigationProps) => {
    const [username, setUsername] = useState('');
    const [password, setPassword] = useState('');
    const [isErrorModalDisplayed, setIsErrorModalDisplayed] = useState(false);
