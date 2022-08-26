@@ -4,7 +4,7 @@ import { StyleSheet, SafeAreaView, StatusBar, Text, View, TextInput, KeyboardAvo
 import { Color } from "../../styles/Colors";
 import { borderRadius, horizontalPadding } from "../../styles/constants";
 import { Genre } from "../../utils/typeUtils";
-import { UserImage } from "../profile/UserImage";
+import { ImageUpload } from "../ImageUpload";
 
 
 export const AddBookPage = () => {
@@ -17,10 +17,10 @@ export const AddBookPage = () => {
     return (
         <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                < SafeAreaView style={styles.mainContainer} >
+                <SafeAreaView style={styles.mainContainer} >
                     <StatusBar barStyle='dark-content' />
                     <View style={styles.container}>
-                        <UserImage />
+                        <ImageUpload initialPhoto="https://picsum.photos/id/24/350" />
                         <View style={styles.info}>
                             <Text style={styles.text}>Title</Text>
                             <TextInput value={title} onChangeText={setTitle} style={styles.input} />
@@ -43,9 +43,7 @@ export const AddBookPage = () => {
                         </TouchableOpacity>
 
                         {isExchange && (
-                            // (
                             // <ExchangeUser exchange={{ ...{}, type: ExchangeType.LENT } as Exchange} />
-                            // )
                             <Text>exchange</Text>
                         )
                         }

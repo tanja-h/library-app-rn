@@ -5,7 +5,7 @@ import { borderRadius } from "../../styles/constants";
 import { NavigationOnly } from "../../utils/navigationTypeUtils";
 import { RouteName } from "../../utils/routeUtils";
 import { LogoutInfoModal } from "./LogoutInfoModal";
-import { UserImage } from "./UserImage";
+import { ImageUpload } from "../ImageUpload";
 
 export const ProfilePage = ({ navigation }: NavigationOnly) => {
     const [isLogoutModalDisplayed, setIsLogoutModalDisplayed] = useState(false);
@@ -15,7 +15,7 @@ export const ProfilePage = ({ navigation }: NavigationOnly) => {
             <StatusBar barStyle='dark-content' />
 
             <View style={styles.container}>
-                <UserImage />
+                <ImageUpload initialPhoto="https://picsum.photos/id/24/334" />
                 <Text style={styles.title}>Name</Text>
 
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => setIsLogoutModalDisplayed(true)}>

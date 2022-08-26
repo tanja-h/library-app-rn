@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
-import { Color } from "../../styles/Colors";
+import { Color } from "../styles/Colors";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ImageLibraryOptions, launchImageLibrary } from 'react-native-image-picker';
 
+interface Props {
+    initialPhoto: string;
+}
 
-let options: ImageLibraryOptions = {
+const options: ImageLibraryOptions = {
     mediaType: 'photo'
 };
 
-export const UserImage = () => {
-    const [photo, setPhoto] = useState('https://picsum.photos/id/24/350');
+export const ImageUpload = ({ initialPhoto }: Props) => {
+    const [photo, setPhoto] = useState(initialPhoto);
 
     const uploadImage = () => {
         launchImageLibrary(options, ({ didCancel, errorMessage, assets }) => {
@@ -41,6 +44,7 @@ const iconSize = 40;
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
+        alignSelf: 'center',
         marginTop: 32,
     },
     image: {
