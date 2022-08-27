@@ -6,13 +6,14 @@ import { ImageLibraryOptions, launchImageLibrary } from 'react-native-image-pick
 
 interface Props {
     initialPhoto: string;
+    isCircle?: boolean;
 }
 
 const options: ImageLibraryOptions = {
     mediaType: 'photo'
 };
 
-export const ImageUpload = ({ initialPhoto }: Props) => {
+export const ImageUpload = ({ initialPhoto, isCircle }: Props) => {
     const [photo, setPhoto] = useState(initialPhoto);
 
     const uploadImage = () => {
@@ -29,7 +30,7 @@ export const ImageUpload = ({ initialPhoto }: Props) => {
 
     return (
         <View style={styles.container}>
-            <Image source={{ uri: photo }} style={styles.image} />
+            <Image source={{ uri: photo }} style={[styles.image, isCircle && styles.circle]} />
 
             <TouchableOpacity style={styles.iconContainer} onPress={() => uploadImage()}>
                 <Icon name="file-image-plus" size={30} />
@@ -50,8 +51,10 @@ const styles = StyleSheet.create({
     image: {
         width: imageSize,
         height: imageSize,
-        borderRadius: imageSize / 2,
         borderWidth: 1,
+    },
+    circle: {
+        borderRadius: imageSize / 2,
     },
     iconContainer: {
         width: iconSize,

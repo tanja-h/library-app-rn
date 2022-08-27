@@ -22,6 +22,7 @@ const categories = [
 
 export const SearchPage = ({ navigation }: NavigationOnly) => {
     const [criteria, setCriteria] = useState('');
+    const [categories1,] = useState(categories);
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -44,7 +45,7 @@ export const SearchPage = ({ navigation }: NavigationOnly) => {
                 contentContainerStyle={styles.contentContainer}
                 showsVerticalScrollIndicator={false}
             >
-                {categories.map(({ genre, books }) => {
+                {categories1.map(({ genre, books }) => {
                     const booksToDisplay = criteria ? books.filter(books => books.title.toLowerCase().includes(criteria.toLowerCase())) : books;
 
                     return (

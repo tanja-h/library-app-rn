@@ -15,7 +15,7 @@ export const ProfilePage = ({ navigation }: NavigationOnly) => {
             <StatusBar barStyle='dark-content' />
 
             <View style={styles.container}>
-                <ImageUpload initialPhoto="https://picsum.photos/id/24/334" />
+                <ImageUpload initialPhoto="https://picsum.photos/id/24/334" isCircle />
                 <Text style={styles.title}>Name</Text>
 
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => setIsLogoutModalDisplayed(true)}>

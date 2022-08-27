@@ -1,12 +1,23 @@
 import React, { useState } from "react";
 import { StyleSheet, SafeAreaView, StatusBar, Text, View, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from "react-native";
-// import { allBooks } from "../../database/booksData";
+import { allBooks } from "../../database/booksData";
 import { Color } from "../../styles/Colors";
 import { borderRadius, horizontalPadding } from "../../styles/constants";
 import { NavigationProps } from "../../utils/navigationTypeUtils";
-import { Genre } from "../../utils/typeUtils";
+import { Book, Genre } from "../../utils/typeUtils";
 import { ImageUpload } from "../ImageUpload";
 
+
+function validateBookEntry(book: Book) {
+    if (!book.title || !book.author || !book.pagesCount) {
+        console.log('Empty fields');
+        return false;
+    }
+
+    return true;
+}
+
+const initialCoverImage = "https://picsum.photos/id/24/350";
 
 export const AddNewBookPage = ({ route }: NavigationProps) => {
     const [title, setTitle] = useState('');
@@ -15,13 +26,24 @@ export const AddNewBookPage = ({ route }: NavigationProps) => {
     const [pagesCount, setPagesCount] = useState(0);
     const [isExchange, setIsExchange] = useState(route.params?.isExchange);
 
+    const saveBook = () => {
+        const book: Book = { author, title, pagesCount, genre, coverImage: initialCoverImage, id: (pagesCount + 1).toString() };
+        const isValid = validateBookEntry(book);
+        if (isValid) {
+            allBooks.push(book);
+            console.log(`Book '${title}' successfuly saved!`)
+        } else {
+            console.log(`Book '${title}' is not saved!`)
+        }
+    }
+
     return (
         <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <SafeAreaView style={styles.mainContainer} >
                     <StatusBar barStyle='dark-content' />
                     <View style={styles.container}>
-                        <ImageUpload initialPhoto="https://picsum.photos/id/24/350" />
+                        <ImageUpload initialPhoto={initialCoverImage} />
                         <View style={styles.info}>
                             <Text style={styles.text}>Title</Text>
                             <TextInput value={title} onChangeText={setTitle} style={styles.input} />
@@ -49,7 +71,7 @@ export const AddNewBookPage = ({ route }: NavigationProps) => {
                         )
                         }
 
-                        <TouchableOpacity onPress={() => setIsExchange(!isExchange)} style={styles.addExchangeContainer}>
+                        <TouchableOpacity onPress={saveBook} style={styles.addExchangeContainer}>
                             <Text>Save Book</Text>
                         </TouchableOpacity>
                     </View>
@@ -105,7 +127,7 @@ const styles = StyleSheet.create({
         borderWidth: StyleSheet.hairlineWidth,
     },
     addExchangeContainer: {
-        height: 30,
+        height: 40,
         width: 160,
         marginTop: 24,
         justifyContent: 'center',
