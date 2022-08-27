@@ -40,11 +40,13 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         backgroundColor: "#fff",
         borderRadius,
+        padding: 16,
     },
     text: {
         fontSize: 18,
         fontWeight: '600',
         marginTop: 32,
-        letterSpacing: 1
+        letterSpacing: 1,
+        textAlign: 'center',
     },
 });

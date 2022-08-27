@@ -4,33 +4,42 @@ import { LoginInfoModal } from "./LoginInfoModal";
 import { Color } from "../../styles/Colors";
 import { borderRadius } from "../../styles/constants";
 import { RouteName } from "../../utils/routeUtils";
-import { NavigationOnly, NavigationProps } from "../../utils/navigationTypeUtils"
+import { NavigationProps } from "../../utils/navigationTypeUtils"
+import { loginUser } from "../../http/http";
 
 const isEmpty = (text: string) => {
    return text.length === 0;
 }
 
 export const Login = ({ navigation }: NavigationProps) => {
-   const [username, setUsername] = useState('');
+   const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [isErrorModalDisplayed, setIsErrorModalDisplayed] = useState(false);
    const [isSuccessModalDisplayed, setIsSuccessModalDisplayed] = useState(false);
+   const [errorMessage, setErrorMessage] = useState('Error');
 
-   const loginUser = () => {
-      if (isEmpty(username)) {
-         console.log('Username is empty!');
+   const login = async () => {
+      if (isEmpty(email)) {
+         setErrorMessage('Email is empty!');
          setIsErrorModalDisplayed(true);
          return;
       }
 
       if (isEmpty(password)) {
-         console.log('Password is empty!');
+         setErrorMessage('Password is empty!');
          setIsErrorModalDisplayed(true);
          return;
       }
 
-      console.log("succesfuly login")
-      setIsSuccessModalDisplayed(true);
+      const { error, name } = await loginUser({ email, password });
+
+      if (error) {
+         setErrorMessage(error);
+         setIsErrorModalDisplayed(true);
+      } else if (name) {
+         console.log('name', name);
+         setIsSuccessModalDisplayed(true);
+      }
    }
 
    const goToMyBooks = () => {
@@ -44,13 +53,13 @@ export const Login = ({ navigation }: NavigationProps) => {
          <View style={styles.container}>
             <Image source={{ uri: 'https://picsum.photos/id/24/350' }} style={styles.image} />
 
-            <Text style={styles.title}>Username</Text>
-            <TextInput value={username} onChangeText={setUsername} style={[styles.input]} />
+            <Text style={styles.title}>Email</Text>
+            <TextInput value={email} onChangeText={setEmail} style={[styles.input]} />
 
             <Text style={styles.title}>Password</Text>
             <TextInput value={password} onChangeText={setPassword} style={[styles.input]} secureTextEntry />
 
-            <TouchableOpacity style={styles.buttonContainer} onPress={loginUser}>
+            <TouchableOpacity style={styles.buttonContainer} onPress={login}>
                <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
          </View>
@@ -60,7 +69,7 @@ export const Login = ({ navigation }: NavigationProps) => {
          )}
 
          {isErrorModalDisplayed && (
-            <LoginInfoModal text="Error while logging in!" isSuccess={false} onClose={() => setIsErrorModalDisplayed(false)} />
+            <LoginInfoModal text={errorMessage} isSuccess={false} onClose={() => setIsErrorModalDisplayed(false)} />
          )}
       </SafeAreaView>
    );

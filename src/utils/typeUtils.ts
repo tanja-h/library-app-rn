@@ -35,3 +35,8 @@ export interface User {
     password: string,
     photo?: string,
 }
+
+export interface LoginUser {
+    email: string,
+    password: string,
+}
