@@ -20,6 +20,6 @@ export const loginUser = async ({ email, password }: LoginUser): Promise<LoginUs
         return { name, error };
 
     } catch (error) {
-        return { error: error as string, name: null };
+        return { error: (error as Error).message as string, name: null };
     }
 };
