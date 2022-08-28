@@ -70,17 +70,21 @@ export const AddNewBookPage = ({ route, navigation }: NavigationProps) => {
                 </View>
 
                 <ScrollView style={styles.chipContainer} horizontal showsHorizontalScrollIndicator={false}>
-                    {genres.map(g => (
-                        <Chip
-                            key={g}
-                            onPress={() => setGenre(g)}
-                            style={styles.chip}
-                            mode='outlined'
-                            selected={g === genre}
-                        >
-                            {g}
-                        </Chip>
-                    ))}
+                    {genres.map(g => {
+                        const isSelected = g === genre;
+
+                        return (
+                            <Chip
+                                key={g}
+                                onPress={() => setGenre(g)}
+                                style={[styles.chip, isSelected && styles.selectedChip]}
+                                mode='outlined'
+                                selected={isSelected}
+                            >
+                                {g}
+                            </Chip>
+                        );
+                    })}
                 </ScrollView>
 
 
@@ -93,8 +97,8 @@ export const AddNewBookPage = ({ route, navigation }: NavigationProps) => {
                     <Text>exchange</Text>
                 )}
 
-                <TouchableOpacity onPress={saveBook} style={styles.addExchangeContainer}>
-                    <Text>Save Book</Text>
+                <TouchableOpacity onPress={saveBook} style={styles.saveContainer} activeOpacity={0.6}>
+                    <Text style={styles.saveText}>Save Book</Text>
                 </TouchableOpacity>
 
                 {isSuccessModalDisplayed && (
@@ -168,6 +172,9 @@ const styles = StyleSheet.create({
         backgroundColor: Color.WHITE,
         borderColor: Color.BLACK,
     },
+    selectedChip: {
+        borderWidth: 1,
+    },
     addExchangeContainer: {
         height: 40,
         width: 160,
@@ -177,5 +184,22 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius,
         backgroundColor: Color.WHITE
+    },
+    saveContainer: {
+        height: 40,
+        width: 160,
+        marginTop: 24,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1.5,
+        borderRadius,
+        borderColor: Color.SALMON_DARK,
+        backgroundColor: Color.WHITE,
+    },
+    saveText: {
+        color: Color.SALMON_DARK,
+        fontWeight: '500',
+        letterSpacing: 1,
     }
 });
