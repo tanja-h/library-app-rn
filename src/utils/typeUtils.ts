@@ -49,3 +49,8 @@ export const genres: Genre[] = [
     Genre.HISTORICAL,
     Genre.THRILLER,
 ];
+
+export const exchangeTypes: ExchangeType[] = [
+    ExchangeType.LENT,
+    ExchangeType.BORROWED
+]

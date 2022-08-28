@@ -5,13 +5,14 @@ import { allBooks } from "../../database/booksData";
 import { Color } from "../../styles/Colors";
 import { borderRadius, horizontalPadding } from "../../styles/constants";
 import { NavigationProps } from "../../utils/navigationTypeUtils";
-import { Book, genres } from "../../utils/typeUtils";
+import { Book, Exchange, genres } from "../../utils/typeUtils";
 import { PhotoUpload } from "../PhotoUpload";
 import { InfoModal } from "../InfoModal";
 import { Chip } from 'react-native-paper';
+import { ExchangeBook } from "./ExchangeBook";
 
-function validateBookEntry(book: Book) {
-    if (!book.title || !book.author || !book.pagesCount) {
+function validateBookEntry(book: Book, isExchange: boolean) {
+    if (!book.title || !book.author || !book.pagesCount || (isExchange && !book.exchange)) {
         return false;
     }
 
@@ -27,12 +28,13 @@ export const AddNewBookPage = ({ route, navigation }: NavigationProps) => {
     const [photo, setPhoto] = useState("https://picsum.photos/id/24/350");
     const [pagesCount, setPagesCount] = useState(0);
     const [isExchange, setIsExchange] = useState(route.params?.isExchange);
+    const [exchange, setExchange] = useState<Exchange>({} as Exchange);
     const [isErrorModalDisplayed, setIsErrorModalDisplayed] = useState(false);
     const [isSuccessModalDisplayed, setIsSuccessModalDisplayed] = useState(false);
 
     const saveBook = () => {
         const book: Book = { author, title, pagesCount, genre, cover: photo, id: (pagesCount + 1).toString() };
-        const isValid = validateBookEntry(book);
+        const isValid = validateBookEntry(book, isExchange);
         if (isValid) {
             allBooks.push(book);
             setIsSuccessModalDisplayed(true);
@@ -93,8 +95,7 @@ export const AddNewBookPage = ({ route, navigation }: NavigationProps) => {
                 </TouchableOpacity>
 
                 {isExchange && (
-                    // <ExchangeUser exchange={{ ...{}, type: ExchangeType.LENT } as Exchange} />
-                    <Text>exchange</Text>
+                    <ExchangeBook exchange={exchange} setExchange={setExchange} />
                 )}
 
                 <TouchableOpacity onPress={saveBook} style={styles.saveContainer} activeOpacity={0.6}>
