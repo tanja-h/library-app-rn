@@ -1,28 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView, StatusBar, ScrollView } from "react-native";
 import { SearchGallery } from "./SearchGallery";
 import { allBooks } from "../../database/booksData";
 import { Color } from "../../styles/Colors";
 import { horizontalPadding } from "../../styles/constants";
-import { Genre } from "../../utils/typeUtils";
+import { Book, Genre } from "../../utils/typeUtils";
 import { NavigationOnly } from "../../utils/navigationTypeUtils";
 import { TextInput } from "react-native-paper";
 
-function getBooks(genre: Genre) {
-    return allBooks.filter(book => book.genre === genre);
+interface BookCategory {
+    genre: Genre,
+    books: Book[],
 }
 
-const categories = [
-    { genre: Genre.FANTASY, books: getBooks(Genre.FANTASY) },
-    { genre: Genre.DRAMA, books: getBooks(Genre.DRAMA) },
-    { genre: Genre.ROMANCE, books: getBooks(Genre.ROMANCE) },
-    { genre: Genre.HISTORICAL, books: getBooks(Genre.HISTORICAL) },
-    { genre: Genre.THRILLER, books: getBooks(Genre.THRILLER) },
+const genres: Genre[] = [
+    Genre.FANTASY,
+    Genre.DRAMA,
+    Genre.ROMANCE,
+    Genre.HISTORICAL,
+    Genre.THRILLER,
 ];
+
+const getCategories = (allBooks: Book[]): BookCategory[] => {
+    const categories: BookCategory[] = [];
+    genres.forEach(genre => {
+        const c = { genre, books: allBooks.filter(book => book.genre === genre) };
+        categories.push(c)
+    })
+
+    return categories;
+}
 
 export const SearchPage = ({ navigation }: NavigationOnly) => {
     const [criteria, setCriteria] = useState('');
-    const [categories1,] = useState(categories);
+    const [books, setBooks] = useState<Book[]>([]);
+
+    useEffect(() => {
+        setBooks(allBooks);
+    }, [allBooks])
+
+    const categories = getCategories(books);
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -45,7 +62,7 @@ export const SearchPage = ({ navigation }: NavigationOnly) => {
                 contentContainerStyle={styles.contentContainer}
                 showsVerticalScrollIndicator={false}
             >
-                {categories1.map(({ genre, books }) => {
+                {categories.map(({ genre, books }) => {
                     const booksToDisplay = criteria ? books.filter(books => books.title.toLowerCase().includes(criteria.toLowerCase())) : books;
 
                     return (

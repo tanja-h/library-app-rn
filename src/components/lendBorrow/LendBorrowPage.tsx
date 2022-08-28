@@ -1,22 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView, StatusBar, View } from "react-native";
 import { LendBorrowCategory } from "./LendBorrowCategory";
 import { allBooks } from "../../database/booksData";
 import { Color } from "../../styles/Colors";
 import { NavigationOnly } from "../../utils/navigationTypeUtils";
-import { ExchangeType } from "../../utils/typeUtils";
+import { Book, ExchangeType } from "../../utils/typeUtils";
 
 export const LendBorrowPage = ({ navigation }: NavigationOnly) => {
-    const lent = allBooks.filter(book => book.exchange && book.exchange.type === ExchangeType.LENT);
-    const borrowed = allBooks.filter(book => book.exchange && book.exchange.type === ExchangeType.BORROWED);
-
+    const [lentBooks, setLentBooks] = useState<Book[]>([]);
+    const [borrowedBooks, setBorrowedBooks] = useState<Book[]>([]);
     const [isLentExpanded, setIsLentExpanded] = useState(false);
     const [isBorrowExpanded, setIsBorrowExpanded] = useState(true);
+
+    useEffect(() => {
+        setLentBooks(allBooks.filter(book => book.exchange && book.exchange.type === ExchangeType.LENT));
+        setBorrowedBooks(allBooks.filter(book => book.exchange && book.exchange.type === ExchangeType.BORROWED));
+    }, [allBooks])
 
     const expandLent = () => {
         setIsLentExpanded(!isLentExpanded);
         setIsBorrowExpanded(false);
     }
+
     const expandBorrow = () => {
         setIsBorrowExpanded(!isBorrowExpanded);
         setIsLentExpanded(false);
@@ -29,14 +34,14 @@ export const LendBorrowPage = ({ navigation }: NavigationOnly) => {
             <View style={styles.container}>
                 <LendBorrowCategory
                     title="Lent books"
-                    books={lent}
+                    books={lentBooks}
                     isExpanded={isLentExpanded}
                     onPressExpand={expandLent}
                     navigation={navigation}
                 />
                 <LendBorrowCategory
                     title="Borrowed books"
-                    books={borrowed}
+                    books={borrowedBooks}
                     isExpanded={isBorrowExpanded}
                     onPressExpand={expandBorrow}
                     navigation={navigation}
