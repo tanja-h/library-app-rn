@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, SafeAreaView, StatusBar, Image, TouchableOpacity } from "react-native";
-import { LoginInfoModal } from "./LoginInfoModal";
+import { InfoModal } from "../InfoModal";
 import { Color } from "../../styles/Colors";
 import { borderRadius } from "../../styles/constants";
 import { RouteName } from "../../utils/routeUtils";
@@ -65,11 +65,11 @@ export const Login = ({ navigation }: NavigationProps) => {
          </View>
 
          {isSuccessModalDisplayed && (
-            <LoginInfoModal text="Successfuly loged in!" isSuccess onClose={goToMyBooks} />
+            <InfoModal text="Successfuly loged in!" isSuccess onClose={goToMyBooks} />
          )}
 
          {isErrorModalDisplayed && (
-            <LoginInfoModal text={errorMessage} isSuccess={false} onClose={() => setIsErrorModalDisplayed(false)} />
+            <InfoModal text={errorMessage} isSuccess={false} onClose={() => setIsErrorModalDisplayed(false)} />
          )}
       </SafeAreaView>
    );
@@ -84,11 +84,11 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingHorizontal: 32,
       alignItems: 'center',
-      justifyContent: 'center'
    },
    image: {
       width: 250,
       height: 200,
+      marginTop: 70,
       marginBottom: 32,
       borderRadius,
       borderWidth: 1,
