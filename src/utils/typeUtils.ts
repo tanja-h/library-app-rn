@@ -7,6 +7,7 @@ export enum Genre {
     THRILLER = 'Thriler',
     HISTORICAL = 'Historical',
 }
+
 export interface Book {
     id: string,
     title: string,
@@ -40,3 +41,11 @@ export interface LoginUser {
     email: string,
     password: string,
 }
+
+export const genres: Genre[] = [
+    Genre.FANTASY,
+    Genre.DRAMA,
+    Genre.ROMANCE,
+    Genre.HISTORICAL,
+    Genre.THRILLER,
+];

@@ -4,7 +4,7 @@ import { SearchGallery } from "./SearchGallery";
 import { allBooks } from "../../database/booksData";
 import { Color } from "../../styles/Colors";
 import { horizontalPadding } from "../../styles/constants";
-import { Book, Genre } from "../../utils/typeUtils";
+import { Book, Genre, genres } from "../../utils/typeUtils";
 import { NavigationOnly } from "../../utils/navigationTypeUtils";
 import { TextInput } from "react-native-paper";
 
@@ -12,14 +12,6 @@ interface BookCategory {
     genre: Genre,
     books: Book[],
 }
-
-const genres: Genre[] = [
-    Genre.FANTASY,
-    Genre.DRAMA,
-    Genre.ROMANCE,
-    Genre.HISTORICAL,
-    Genre.THRILLER,
-];
 
 const getCategories = (allBooks: Book[]): BookCategory[] => {
     const categories: BookCategory[] = [];

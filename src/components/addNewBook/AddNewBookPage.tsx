@@ -5,10 +5,10 @@ import { allBooks } from "../../database/booksData";
 import { Color } from "../../styles/Colors";
 import { borderRadius, horizontalPadding } from "../../styles/constants";
 import { NavigationProps } from "../../utils/navigationTypeUtils";
-import { Book, Genre } from "../../utils/typeUtils";
+import { Book, Genre, genres } from "../../utils/typeUtils";
 import { ImageUpload } from "../ImageUpload";
 import { InfoModal } from "../InfoModal";
-
+import { Chip } from 'react-native-paper';
 
 function validateBookEntry(book: Book) {
     if (!book.title || !book.author || !book.pagesCount) {
@@ -66,8 +66,22 @@ export const AddNewBookPage = ({ route, navigation }: NavigationProps) => {
                 </View>
                 <View style={styles.info}>
                     <Text style={styles.text}>Genre</Text>
-                    <Text style={styles.text}>{genre}</Text>
                 </View>
+
+                <ScrollView style={styles.chipContainer} horizontal showsHorizontalScrollIndicator={false}>
+                    {genres.map(g => (
+                        <Chip
+                            key={g}
+                            onPress={() => setGenre(g)}
+                            style={styles.chip}
+                            mode='outlined'
+                            selected={g === genre}
+                        >
+                            {g}
+                        </Chip>
+                    ))}
+                </ScrollView>
+
 
                 <TouchableOpacity onPress={() => setIsExchange(!isExchange)} style={styles.addExchangeContainer}>
                     <Text>Add exchange details</Text>
@@ -140,6 +154,18 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         borderRadius,
         borderWidth: StyleSheet.hairlineWidth,
+    },
+    chipContainer: {
+        flexDirection: 'row',
+        marginTop: 16,
+    },
+    chip: {
+        height: 35,
+        textAlign: 'center',
+        paddingHorizontal: 4,
+        marginRight: 8,
+        backgroundColor: Color.WHITE,
+        borderColor: Color.BLACK,
     },
     addExchangeContainer: {
         height: 40,
