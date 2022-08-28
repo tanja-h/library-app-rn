@@ -10,7 +10,7 @@ export const MyBooksPage = ({ navigation }: NavigationOnly) => {
     const [books, setBooks] = useState<Book[]>([]);
 
     useEffect(() => {
-        setBooks(allBooks.filter(book => book.exchange === undefined));
+        setBooks(allBooks.filter(book => !book.exchange));
     }, [allBooks])
 
     return (

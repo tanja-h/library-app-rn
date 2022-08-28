@@ -3,9 +3,11 @@ import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import { Color } from "../styles/Colors";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ImageLibraryOptions, launchImageLibrary } from 'react-native-image-picker';
+import { Setter } from "../utils/typeUtils";
 
 interface Props {
-    initialPhoto: string;
+    photo: string;
+    setPhoto: Setter<string>;
     isCircle?: boolean;
 }
 
@@ -13,8 +15,7 @@ const options: ImageLibraryOptions = {
     mediaType: 'photo'
 };
 
-export const ImageUpload = ({ initialPhoto, isCircle }: Props) => {
-    const [photo, setPhoto] = useState(initialPhoto);
+export const PhotoUpload = ({ photo, setPhoto, isCircle }: Props) => {
 
     const uploadImage = () => {
         launchImageLibrary(options, ({ didCancel, errorMessage, assets }) => {

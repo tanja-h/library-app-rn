@@ -5,9 +5,10 @@ import { borderRadius } from "../../styles/constants";
 import { NavigationOnly } from "../../utils/navigationTypeUtils";
 import { RouteName } from "../../utils/routeUtils";
 import { LogoutInfoModal } from "./LogoutInfoModal";
-import { ImageUpload } from "../ImageUpload";
+import { PhotoUpload } from "../PhotoUpload";
 
 export const ProfilePage = ({ navigation }: NavigationOnly) => {
+    const [photo, setPhoto] = useState("https://picsum.photos/id/24/334");
     const [isLogoutModalDisplayed, setIsLogoutModalDisplayed] = useState(false);
 
     return (
@@ -15,7 +16,7 @@ export const ProfilePage = ({ navigation }: NavigationOnly) => {
             <StatusBar barStyle='dark-content' />
 
             <View style={styles.container}>
-                <ImageUpload initialPhoto="https://picsum.photos/id/24/334" isCircle />
+                <PhotoUpload photo={photo} setPhoto={setPhoto} isCircle />
                 <Text style={styles.title}>Name</Text>
 
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => setIsLogoutModalDisplayed(true)}>

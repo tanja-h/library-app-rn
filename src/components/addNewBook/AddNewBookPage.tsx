@@ -5,8 +5,8 @@ import { allBooks } from "../../database/booksData";
 import { Color } from "../../styles/Colors";
 import { borderRadius, horizontalPadding } from "../../styles/constants";
 import { NavigationProps } from "../../utils/navigationTypeUtils";
-import { Book, Genre, genres } from "../../utils/typeUtils";
-import { ImageUpload } from "../ImageUpload";
+import { Book, genres } from "../../utils/typeUtils";
+import { PhotoUpload } from "../PhotoUpload";
 import { InfoModal } from "../InfoModal";
 import { Chip } from 'react-native-paper';
 
@@ -23,14 +23,15 @@ const initialCoverImage = "https://picsum.photos/id/24/350";
 export const AddNewBookPage = ({ route, navigation }: NavigationProps) => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
-    const [genre, setGenre] = useState(Genre.DRAMA);
+    const [genre, setGenre] = useState(genres[0]);
+    const [photo, setPhoto] = useState("https://picsum.photos/id/24/350");
     const [pagesCount, setPagesCount] = useState(0);
     const [isExchange, setIsExchange] = useState(route.params?.isExchange);
     const [isErrorModalDisplayed, setIsErrorModalDisplayed] = useState(false);
     const [isSuccessModalDisplayed, setIsSuccessModalDisplayed] = useState(false);
 
     const saveBook = () => {
-        const book: Book = { author, title, pagesCount, genre, coverImage: initialCoverImage, id: (pagesCount + 1).toString() };
+        const book: Book = { author, title, pagesCount, genre, cover: photo, id: (pagesCount + 1).toString() };
         const isValid = validateBookEntry(book);
         if (isValid) {
             allBooks.push(book);
@@ -51,7 +52,7 @@ export const AddNewBookPage = ({ route, navigation }: NavigationProps) => {
         <SafeAreaView style={styles.mainContainer} >
             <StatusBar barStyle='dark-content' />
             <ScrollView contentContainerStyle={styles.container}>
-                <ImageUpload initialPhoto={initialCoverImage} />
+                <PhotoUpload photo={photo} setPhoto={setPhoto} />
                 <View style={styles.info}>
                     <Text style={styles.text}>Title</Text>
                     <TextInput value={title} onChangeText={setTitle} style={styles.input} />
