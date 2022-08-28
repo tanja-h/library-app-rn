@@ -16,7 +16,7 @@ export const BookPage = ({ route: { params } }: any) => {
             <StatusBar barStyle='dark-content' />
 
             <View style={styles.container}>
-                <Image source={{ uri: book.coverImage }} style={styles.image} />
+                <Image source={{ uri: book.cover }} style={styles.image} />
                 <View>
                     <Text style={styles.title}>{book.title}</Text>
                     <Text style={styles.author}>{book.author}</Text>

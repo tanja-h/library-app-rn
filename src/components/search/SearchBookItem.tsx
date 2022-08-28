@@ -14,7 +14,7 @@ export const SearchBookItem = ({ book, width, onPress }: Props) => {
 
     return (
         <TouchableOpacity style={[styles.container, { width }]} onPress={onPress} activeOpacity={activeOpacity}>
-            <Image source={{ uri: book.coverImage }} style={styles.image} />
+            <Image source={{ uri: book.cover }} style={styles.image} />
             <View style={styles.info}>
                 <Text style={styles.title}>{book.title}</Text>
                 <Text style={styles.author}>{book.author}</Text>

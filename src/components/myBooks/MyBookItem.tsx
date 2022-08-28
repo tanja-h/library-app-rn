@@ -12,7 +12,7 @@ interface Props {
 export const MyBookItem = ({ book, onPress }: Props) => {
     return (
         <TouchableOpacity style={styles.container} onPress={onPress} activeOpacity={activeOpacity}>
-            <Image source={{ uri: book.coverImage }} style={styles.image} />
+            <Image source={{ uri: book.cover }} style={styles.image} />
             <Text style={styles.title}>{book.title}</Text>
             <Text style={styles.genre}>{book.genre}</Text>
             <Text style={styles.genre}>{book.pagesCount} pages</Text>

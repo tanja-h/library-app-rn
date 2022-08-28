@@ -14,7 +14,7 @@ export const LendBorrowBookItem = ({ book, onPress }: Props) => {
     return (
         <TouchableOpacity style={styles.container} onPress={onPress} activeOpacity={activeOpacity}>
             <View style={styles.imageContainer}>
-                <Image source={{ uri: book.coverImage }} style={styles.image} />
+                <Image source={{ uri: book.cover }} style={styles.image} />
             </View>
 
             <View style={styles.details}>

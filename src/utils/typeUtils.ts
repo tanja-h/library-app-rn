@@ -13,7 +13,7 @@ export interface Book {
     title: string,
     author: string,
     genre: Genre,
-    coverImage: string,
+    cover: string,
     pagesCount: number,
     exchange?: Exchange,
 }
